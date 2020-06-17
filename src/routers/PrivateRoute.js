@@ -26,7 +26,3 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps)(PrivateRoute);
 
-//Create PublicRoute 
-// Redirect to /dashboard if logged in
-// Render component if not logged in
-// use it for the login page

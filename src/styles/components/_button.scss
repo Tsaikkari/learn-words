@@ -1,5 +1,5 @@
 .button {
-	background: $turquoise;
+	background: $grey;
 	border: none;
 	border-radius: 3px;
 	color: white;
@@ -16,5 +16,14 @@
 }
 
 .button--secondary {
-	background: #888;
+	background: #78b0a0;
+}
+
+button, select {
+	color: #587850;
+}
+
+.button__test {
+	background-color: #587850;
+	margin-left: 12.5rem;
 }
