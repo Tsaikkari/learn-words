@@ -1,8 +1,9 @@
 import React from 'react';
+import WordList from './WordList';
 
 const DashboardPage = () => (
   <div>
-    Dashboard page content
+    <WordList />
   </div>
 );
 
