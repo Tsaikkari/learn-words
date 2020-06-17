@@ -1,0 +1,25 @@
+.box-layout {
+	align-items: center;
+	background: url('/images/silhouette.jpg');
+	background-size: cover;
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	width: 100vw;
+}
+
+.box-layout__box {
+	background: fade-out(white, .30); //#cedad9
+	border-radius: 3px;
+	padding: $l-size $m-size;
+	text-align: center;
+	width: 25rem;
+}
+
+.box-layout__title {
+	color: $dark-grey;
+	font-family: serif;
+	letter-spacing: 1.5px;
+	line-height: 1;
+	margin: 0 0 $m-size;
+}
