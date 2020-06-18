@@ -7,7 +7,7 @@ const WordsSummary = () => {
 			<div className="content-container">
 				<div className="page-header__actions">
 					<Link className="button" to="/create">Add Word</Link>
-          <Link className="button button__test" to="/test">Test Skills</Link>
+          <Link className="test" to="/test">Test Skills</Link>
 				</div>
 			</div>
 		</div>

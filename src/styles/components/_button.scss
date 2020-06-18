@@ -9,10 +9,15 @@
 	line-height: 1;
 	padding: $s-size;
 	text-decoration: none;
+	@media (max-width: $desktop-breakpoint) {
+		margin-left: 10px;
+	}
 }
 
 .button--link {
 	background: none;
+	margin-left: 0;
+	padding-left: 0;
 }
 
 .button--secondary {
@@ -23,7 +28,13 @@ button, select {
 	color: #587850;
 }
 
-.button__test {
-	background-color: #587850;
-	margin-left: 12.5rem;
+.test {
+	color: #ff8a5c;
+	//color: #587850;
+	display: flex;
+	font-size: $font-size-large;
+	margin-left: 10px;
+	padding-top: 10px;
+	text-decoration: none;
 }
+
