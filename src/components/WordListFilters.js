@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import { setTextFilter, sortByWord, sortByTranslation } from '../actions/filters';
 
 export class WordListFilters extends React.Component {
-	onFocusChange = (calendarFocused) => {
-		this.setState(() => ({ calendarFocused }));
-	}
-
 	onTextChange = (e) => {
 		//update the store with dispatch action generator prop accessed via connect
 		this.props.setTextFilter(e.target.value);

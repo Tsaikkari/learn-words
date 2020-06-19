@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const WordsSummary = () => {
+const WordsIntro = () => {
 	return (
 		<div className="page-header">
 			<div className="content-container">
@@ -14,4 +14,4 @@ const WordsSummary = () => {
 	);
 }
 
-export default WordsSummary;
+export default WordsIntro;
