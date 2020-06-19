@@ -5,21 +5,35 @@ export class TestSkillsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pickedWord: undefined
+      pickedWord: undefined,
+      pickedTranslation: undefined
     }
   }
   onHandlePick = () => {
     const randomNumber = Math.floor(Math.random() * this.props.words.length);
     const randomWordItem = this.props.words[randomNumber];
     const pickedWord = randomWordItem.word;
-    this.setState(() => ({ pickedWord })); 
-    console.log(pickedWord)
+    const pickedTranslation = randomWordItem.translation;
+    this.setState(() => ({ pickedWord, pickedTranslation })); 
+    return randomWordItem;
   }
 
   onTextChange = (e) => {
     const answer = e.target.value;
-    console.log(answer)
+    return answer;
   };
+
+  onSubmit = (answer) => {
+    const right = "Good job!";
+    const wrong = "Keep practicing!";
+   
+    if (answer === this.state.pickedTranslation) {
+      console.log(this.state.pickedTranslation)
+      console.log(right);
+    } else {
+      console.log(wrong);
+    }
+  }
   render() {
     return (
       <div className="content-container">
@@ -33,10 +47,10 @@ export class TestSkillsPage extends React.Component {
         <input
           type="text"
           className="text-input"
-          placeholder="Word"
+          placeholder="Your Answer"
           autoFocus
-          value={this.state.word || this.state.translation}
-          onChange={this.textChange}
+          value={this.answer}  // TODO: fix this
+          onChange={this.onTextChange}
         />
         <button 
           className="button" 
