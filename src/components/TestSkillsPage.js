@@ -8,7 +8,8 @@ export class TestSkillsPage extends React.Component {
     this.state = {
       pickedWord: undefined,
       pickedTranslation: undefined
-    }
+    };
+    this.src = "";
   }
   onHandlePick = () => {
     const randomNumber = Math.floor(Math.random() * this.props.words.length);
@@ -19,17 +20,17 @@ export class TestSkillsPage extends React.Component {
     return randomWordItem;
   }
 
-  onSubmit = (e) => {
+  /*onSubmit = () => { This works
     const right = "Good job!";
     const wrong = "Keep practicing!";
    
     if (this.input.current.value === this.state.pickedTranslation) {
-      console.log(this.state.pickedTranslation)
       console.log(right);
     } else {
       console.log(wrong);
     }
-  }
+  }*/
+  
   render() {
     return (
       <div className="content-container">
@@ -45,14 +46,21 @@ export class TestSkillsPage extends React.Component {
           className="text-input text-input__answer"
           placeholder="Your Answer"
           autoFocus
-          ref={this.input}
+          ref={this.input}     
         />
         <button 
           className="button button__submit" 
-          onClick={this.onSubmit}
+          onClick={this.onSubmit = () => {
+            this.input.current.value === this.state.pickedTranslation 
+          ?
+            this.src = "/images/well-done.gif"
+          : 
+            this.src = "/images/practice.gif"
+          }}
         >
           Submit
         </button>
+        <img src={this.src} />
       </div>
     );
   }
