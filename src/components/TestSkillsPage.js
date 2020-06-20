@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 export class TestSkillsPage extends React.Component {
   constructor(props) {
     super(props);
+    this.input = React.createRef();
     this.state = {
       pickedWord: undefined,
       pickedTranslation: undefined
@@ -18,16 +19,11 @@ export class TestSkillsPage extends React.Component {
     return randomWordItem;
   }
 
-  onTextChange = (e) => {
-    const answer = e.target.value;
-    return answer;
-  };
-
-  onSubmit = (answer) => {
+  onSubmit = (e) => {
     const right = "Good job!";
     const wrong = "Keep practicing!";
    
-    if (answer === this.state.pickedTranslation) {
+    if (this.input.current.value === this.state.pickedTranslation) {
       console.log(this.state.pickedTranslation)
       console.log(right);
     } else {
@@ -49,8 +45,7 @@ export class TestSkillsPage extends React.Component {
           className="text-input text-input__answer"
           placeholder="Your Answer"
           autoFocus
-          value={this.answer}  // TODO: fix this
-          onChange={this.onTextChange}
+          ref={this.input}
         />
         <button 
           className="button button__submit" 
