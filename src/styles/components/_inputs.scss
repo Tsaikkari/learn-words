@@ -9,7 +9,7 @@
 .select {
 	@extend .text-input;
 	@media (max-width: $desktop-breakpoint) {
-		margin-bottom: 10px;
+		margin-bottom: 1.6rem;
 	}
 }
 
@@ -21,7 +21,6 @@
 @media (max-width: $desktop-breakpoint) {
 	.text-input {
 		border: 1px solid #cacccd;
-		color: #ff8a5c;
 		font-size: $font-size-small;
 		font-weight: 300;
 		height: 40px;

@@ -1,5 +1,5 @@
 .page-header {
-	background: #badfdb;
+	background: #393e46;   //#78b0a0;
 	background-image: url("https://www.transparenttextures.com/patterns/gplay.png");
 	padding: $l-size 0;
 	margin-bottom: $l-size;
@@ -11,15 +11,19 @@
 .page-header__actions {
 	margin-top: $m-size;
 	@media (max-width: $desktop-breakpoint) {
-		margin-top: 0;
+		margin: 2.5rem 0;
 	}
 }
 
 .page-header__title {
+	color: #eee;
 	font-weight: 300;
 	margin: 0 0 0 5px;
 	span {
 		font-weight: 700;
+	}
+	@media (max-width: $desktop-breakpoint) {
+		font-size: $m-size;
 	}
 }
 

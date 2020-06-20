@@ -1,14 +1,14 @@
-.header {
-  //background: $grey;
-  //background: #78b0a0;
-}
-
 .header__content {
 	margin-left: 10px;
 }
 
+/*.header {
+  //background: $grey;
+  //background: #78b0a0;
+}*/
+
 .header__title {
-	color: #49beb7;
+	color: #222831;
 	text-decoration: none;
 	h1 {
 		margin: 0;
@@ -24,11 +24,11 @@
 		padding: 0;
 	}
 	.header__title {
-		color: #49beb7;
+		color: #222831;
 		text-decoration: none;
 		h1 {
 			font-size: 4rem;
-			margin: 0 0 0.7rem -1.2rem;
+			margin: 0 0 0.7rem -1.5rem;
 		}
 	}
 }

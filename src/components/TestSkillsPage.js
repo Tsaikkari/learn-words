@@ -43,7 +43,7 @@ export class TestSkillsPage extends React.Component {
         >
           Pick Word
         </button>
-        <h3>{this.state.pickedWord}</h3>
+        <h3 class="picked-word">{this.state.pickedWord}</h3>
         <input
           type="text"
           className="text-input text-input__answer"
@@ -56,7 +56,7 @@ export class TestSkillsPage extends React.Component {
           className="button button__submit" 
           onClick={this.onSubmit}
         >
-          Submit Answer
+          Submit
         </button>
       </div>
     );
