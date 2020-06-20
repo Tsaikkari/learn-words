@@ -7,17 +7,16 @@ export class TestSkillsPage extends React.Component {
     this.input = React.createRef();
     this.state = {
       pickedWord: undefined,
-      pickedTranslation: undefined
+      pickedTranslation: undefined,
+      src: ''
     };
-    this.src = "";
   }
-  onHandlePick = () => {
+  onHandlePick = () => {    
     const randomNumber = Math.floor(Math.random() * this.props.words.length);
     const randomWordItem = this.props.words[randomNumber];
     const pickedWord = randomWordItem.word;
-    const pickedTranslation = randomWordItem.translation;
-    this.setState(() => ({ pickedWord, pickedTranslation })); 
-    return randomWordItem;
+    const pickedTranslation = randomWordItem.translation; 
+    this.setState(() => ({ pickedWord, pickedTranslation }));           
   }
   
   render() {
@@ -53,7 +52,7 @@ export class TestSkillsPage extends React.Component {
         >
           Submit
         </button>
-        <img className="feedback__image" src={this.onSubmit/*()*/ && this.src} />
+        <img className="feedback__image" src={this.onSubmit && this.src} />
       </div>
     );
   }
