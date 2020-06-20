@@ -19,17 +19,6 @@ export class TestSkillsPage extends React.Component {
     this.setState(() => ({ pickedWord, pickedTranslation })); 
     return randomWordItem;
   }
-
-  /*onSubmit = () => { This works
-    const right = "Good job!";
-    const wrong = "Keep practicing!";
-   
-    if (this.input.current.value === this.state.pickedTranslation) {
-      console.log(right);
-    } else {
-      console.log(wrong);
-    }
-  }*/
   
   render() {
     return (
@@ -51,16 +40,20 @@ export class TestSkillsPage extends React.Component {
         <button 
           className="button button__submit" 
           onClick={this.onSubmit = () => {
-            this.input.current.value === this.state.pickedTranslation 
+            console.log(this.input.current.value);
+            this.input.current.value === this.state.pickedTranslation
           ?
             this.src = "/images/well-done.gif"
+  
           : 
-            this.src = "/images/practice.gif"
-          }}
+            this.src = "/images/practice.gif";
+            this.input.current.value = '';
+          }
+        }
         >
           Submit
         </button>
-        <img src={this.src} />
+        <img className="feedback__image" src={this.onSubmit/*()*/ && this.src} />
       </div>
     );
   }
