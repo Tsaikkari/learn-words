@@ -46,14 +46,14 @@ export class TestSkillsPage extends React.Component {
         <h3>{this.state.pickedWord}</h3>
         <input
           type="text"
-          className="text-input"
+          className="text-input text-input__answer"
           placeholder="Your Answer"
           autoFocus
           value={this.answer}  // TODO: fix this
           onChange={this.onTextChange}
         />
         <button 
-          className="button" 
+          className="button button__submit" 
           onClick={this.onSubmit}
         >
           Submit Answer
@@ -69,4 +69,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(TestSkillsPage);
-

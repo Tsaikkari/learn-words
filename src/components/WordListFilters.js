@@ -16,13 +16,13 @@ export class WordListFilters extends React.Component {
 	}
 	render() {
 		return (
-			<div className="content-container">   
+			<div className="content-container content-container__search">   
 				<div className="input-group">
 					<div className="input-group__item">
 						<input 
 							type="text" 
 							className="text-input"
-							placeholder="Search words"
+							placeholder="Search"
 							//current search text
 							value={this.props.filters.text} 
 							onChange={this.onTextChange} 

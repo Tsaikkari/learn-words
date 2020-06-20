@@ -1,14 +1,3 @@
-@media (max-width: $desktop-breakpoint) {
-	.text-input {
-		border: 1px solid #cacccd;
-		font-size: $font-size-medium;
-		font-weight: 300;
-		height: 30px;
-		padding: $s-size;
-		width: 30rem;
-	}
-}
-
 .text-input {
 	border: 1px solid #cacccd;
 	font-size: $font-size-large;
@@ -19,12 +8,34 @@
 
 .select {
 	@extend .text-input;
+	@media (max-width: $desktop-breakpoint) {
+		margin-bottom: 10px;
+	}
 }
 
 .textarea {
 	@extend .text-input;
 	height: 5rem;	
 }
+
+@media (max-width: $desktop-breakpoint) {
+	.text-input {
+		border: 1px solid #cacccd;
+		color: #ff8a5c;
+		font-size: $font-size-small;
+		font-weight: 300;
+		height: 40px;
+		padding: $s-size;
+	}
+	.text-input__answer {
+		margin-left: 10px;
+	}
+	.textarea {
+		height: 55px;
+	}
+}
+
+
 
 
 	

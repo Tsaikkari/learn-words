@@ -10,12 +10,15 @@
 	padding: $s-size;
 	text-decoration: none;
 	@media (max-width: $desktop-breakpoint) {
-		margin-left: 10px;
+		font-size: 1.5rem;
+		margin: 12px 0;
+		padding: 5px;
 	}
 }
 
 .button--link {
 	background: none;
+	color: #ff8a5c;
 	margin-left: 0;
 	padding-left: 0;
 }
@@ -26,6 +29,16 @@
 
 .button__random-word {
 	background: #616161;
+	@media (max-width: $desktop-breakpoint) {
+		margin-left: 10px;
+	}
+}
+
+.button__submit {
+	margin-left: 22px;
+	@media (max-width: $desktop-breakpoint) {
+		margin-left: 10px;
+	}
 }
 
 button, select {
@@ -33,12 +46,14 @@ button, select {
 }
 
 .test {
-	color: #ff8a5c;
+	color: $grey;
 	//color: #587850;
 	display: flex;
 	font-size: $font-size-large;
-	margin-left: 10px;
 	padding-top: 10px;
 	text-decoration: none;
+	@media (max-width: $desktop-breakpoint) {
+		font-size: $font-size-small;
+	}
 }
 
