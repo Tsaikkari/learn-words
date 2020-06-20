@@ -1,8 +1,8 @@
 .button {
-	background: #32e0c4;
+	background: #aacdbe;
 	border: none;
 	border-radius: 3px;
-	color: #222831;
+	color: white;
 	display: inline-block;
 	font-size: $font-size-large;
 	font-weight: 300;
@@ -18,7 +18,7 @@
 
 .button--link {
 	background: none;
-	color: #393e46;
+	color: #ea907a;
 	margin-bottom: 0;
 	margin-left: 0;
 	padding-left: 0;
@@ -29,8 +29,8 @@
 }
 
 .button__random-word {
-	background: #616161;
-	color: #eee;
+	background: #aacdbe;
+	color: $grey;
 	@media (max-width: $desktop-breakpoint) {
 		margin-left: 10px;
 	}
@@ -49,7 +49,7 @@ button, select {
 }
 
 .test {
-	color: #eeeeee;
+	color: white; 
 	float: right;
 	font-size: $font-size-large;
 	margin-right: 1.5rem;
