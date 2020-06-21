@@ -4,55 +4,59 @@ import { connect } from 'react-redux';
 export class TestSkillsPage extends React.Component {
   constructor(props) {
     super(props);
-    this.input = React.createRef();
     this.state = {
       pickedWord: undefined,
       pickedTranslation: undefined,
-      src: ''
+      className: ''
     };
+    this.input = React.createRef();
   }
   onHandlePick = () => {    
     const randomNumber = Math.floor(Math.random() * this.props.words.length);
     const randomWordItem = this.props.words[randomNumber];
     const pickedWord = randomWordItem.word;
     const pickedTranslation = randomWordItem.translation; 
-    this.setState(() => ({ pickedWord, pickedTranslation }));           
+    this.setState(() => ({ pickedWord, pickedTranslation }));  
+    // TODO: add error handler         
   }
-  
+  // TODO: feedback should fire when submit button clicked instead of pick word button
   render() {
     return (
       <div className="content-container">
         <button 
-          className="button button__random-word" 
+          className="button button--random-word" 
           onClick={this.onHandlePick}
         >
           Pick Word
         </button>
         <h3 className="picked-word">{this.state.pickedWord}</h3>
-        <input
-          type="text"
-          className="text-input text-input__answer"
-          placeholder="Your Answer"
-          autoFocus
-          ref={this.input}     
-        />
-        <button 
-          className="button button__submit" 
-          onClick={this.onSubmit = () => {
-            console.log(this.input.current.value);
-            this.input.current.value === this.state.pickedTranslation
-          ?
-            this.src = "/images/well-done.gif"
-  
-          : 
-            this.src = "/images/practice.gif";
-            this.input.current.value = '';
+        <div className="answer-group">
+          <input
+            type="text"
+            className="text-input text-input__answer"
+            placeholder="Your Answer"
+            autoFocus
+            ref={this.input}     
+          />
+          <button 
+            className="button button--submit" 
+            onClick={this.onSubmit = () => {
+              this.input.current.value === this.state.pickedTranslation
+            ?
+              this.state.className = "fas fa-check-circle fa-2x"
+    
+            : 
+              this.state.className = "fas fa-times-circle fa-2x";
+              this.input.current.value = '';
+            }
           }
-        }
-        >
-          Submit
-        </button>
-        <img className="feedback__image" src={this.onSubmit && this.src} />
+          >
+            Submit
+          </button>
+          <i className={this.onSubmit && this.state.className} 
+            style={this.onSubmit && {display: "block"}} 
+          />
+        </div>
       </div>
     );
   }

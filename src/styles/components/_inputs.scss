@@ -18,6 +18,25 @@
 	height: 5rem;	
 }
 
+.answer-group {
+	display: flex;
+}
+
+.fa-check-circle {
+	color: #d14d2e;
+}
+
+.fa-times-circle {
+	color: #a62d88;
+}
+
+/*.feedback-image {
+	display: none;
+	float: right;
+	height: 25rem;
+	width: 20rem;
+}*/
+
 @media (max-width: $desktop-breakpoint) {
 	.text-input {
 		border: 1px solid #cacccd;

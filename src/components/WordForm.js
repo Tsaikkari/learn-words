@@ -7,7 +7,7 @@ export default class WordForm extends React.Component {
       word: props.wordItem ? props.wordItem.word : '',
       translation: props.wordItem ? props.wordItem.translation : '',
       sentence: props.wordItem ? props.wordItem.sentence : '',
-      error: '',
+      error: ''
     }
   }
 

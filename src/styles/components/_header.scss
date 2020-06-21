@@ -2,13 +2,13 @@
 	margin-left: 10px;
 }
 
-/*.header {
-  //background: $grey;
-  //background: #78b0a0;
-}*/
+.header {
+	background-color: #FFF8DC;
+  background-image: url("https://www.transparenttextures.com/patterns/climpek.png");
+}
 
 .header__title {
-	color: #ea907a;
+	color: #cc664e;
 	text-decoration: none;
 	h1 {
 		margin: 0;
@@ -24,10 +24,10 @@
 		padding: 0;
 	}
 	.header__title {
-		color: #ea907a;
+		color: #cc664e;
 		text-decoration: none;
 		h1 {
-			font-size: 4rem;
+			font-size: 3.8rem;
 			margin: 0 0 0.7rem -1.5rem;
 		}
 	}

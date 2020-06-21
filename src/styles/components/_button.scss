@@ -1,5 +1,5 @@
 .button {
-	background: #aacdbe;
+	background: #a17d98;
 	border: none;
 	border-radius: 3px;
 	color: white;
@@ -18,9 +18,9 @@
 
 .button--link {
 	background: none;
-	color: #ea907a;
+	color: #a17d98;
 	margin-bottom: 0;
-	margin-left: 0;
+	margin-left: 3px;
 	padding-left: 0;
 }
 
@@ -28,19 +28,19 @@
 	background: #78b0a0;
 }
 
-.button__random-word {
-	background: #aacdbe;
-	color: $grey;
+.button--random-word {
+	background: #f2ccb1; 
+	border: none;
+	color: #cc664e;
 	@media (max-width: $desktop-breakpoint) {
 		margin-left: 10px;
 	}
 }
 
-.button__submit {
-	margin-left: 22px;
+.button--submit {
+	margin: 0 20px 0 22px;
 	@media (max-width: $desktop-breakpoint) {
-		margin-left: 10px;
-		padding: 12px;
+		margin: 1px 6px 0 10px;
 	}
 }
 
@@ -49,7 +49,7 @@ button, select {
 }
 
 .test {
-	color: white; 
+	color: #cc664e; 
 	float: right;
 	font-size: $font-size-large;
 	margin-right: 1.5rem;

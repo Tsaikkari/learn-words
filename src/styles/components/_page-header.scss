@@ -1,6 +1,6 @@
 .page-header {
-	background: #fbc687;// #393e46;   
-	background-image: url("https://www.transparenttextures.com/patterns/blu-stripes.png");
+	background: ivory;
+	border-top: 1px solid #f2ccb1;
 
 	padding: $l-size 0;
 	margin-bottom: $l-size;
@@ -17,7 +17,7 @@
 }
 
 .page-header__title {
-	color: #eee;
+	color: $grey;
 	font-weight: 300;
 	margin: 0 0 0 5px;
 	span {
