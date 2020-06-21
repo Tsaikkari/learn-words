@@ -11,7 +11,7 @@
 	text-decoration: none;
 	@media (max-width: $desktop-breakpoint) {
 		font-size: 1.5rem;
-		margin: 12px 0;
+		padding: 1rem;
 	}
 }
 
@@ -28,6 +28,9 @@
 
 .button--secondary {
 	background: #78b0a0;
+	@media (max-width: $desktop-breakpoint) {
+		margin-left: 10px;
+	}
 }
 
 .button--random-word {
