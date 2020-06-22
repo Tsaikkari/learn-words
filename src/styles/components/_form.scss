@@ -3,10 +3,6 @@
 	flex-direction: column;
 	> * {
 		margin-bottom: $m-size;
-		margin-right: 10px;
-	}
-	@media (max-width: $desktop-breakpoint) {
-		margin-left: 10px;
 	}
 }
 

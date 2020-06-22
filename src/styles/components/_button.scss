@@ -11,7 +11,6 @@
 	text-decoration: none;
 	@media (max-width: $desktop-breakpoint) {
 		font-size: 1.5rem;
-		padding: 1rem;
 	}
 }
 
@@ -27,21 +26,14 @@
 }
 
 .button--secondary {
-	background: #78b0a0;
-	@media (max-width: $desktop-breakpoint) {
-		margin-left: 10px;
-	}
+	background: $red;
 }
 
 .button--random-word {
 	background: #f2ccb1; 
 	border: none;
-	color: #cc664e;
+	color: $red;
 	margin-top: 20px;
-	@media (max-width: $desktop-breakpoint) {
-		margin: 1.9rem 0 0 10px;
-		padding: 1rem;
-	}
 }
 
 .button--submit {
@@ -57,7 +49,7 @@ button, select {
 }
 
 .test {
-	color: #cc664e; 
+	color: $red; 
 	float: right;
 	font-size: $font-size-large;
 	margin-right: 1.5rem;

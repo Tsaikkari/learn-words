@@ -7,12 +7,12 @@ html {
 }
 
 body {
-  background-color: #fff1e0;
+  background-color: $light-beach;
   color: $dark-grey;
-  /*color: #2a5154;*/
   font-family: Helvetica, Arial, sans-serif;
   font-size: $m-size;
   line-height: 1.6;
+  padding: 0 $s-size;
 }
 
 button {

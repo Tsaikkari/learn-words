@@ -4,18 +4,21 @@
 	font-weight: 300;
 	height: 41px;
 	padding: $s-size;
+	@media (max-width: $desktop-breakpoint) {
+		font-size: $font-size-small;
+	}
 }
 
 .select {
 	@extend .text-input;
-	@media (max-width: $desktop-breakpoint) {
-		margin-bottom: 1.3rem;
-	}
 }
 
 .textarea {
 	@extend .text-input;
 	height: 5rem;	
+	@media (max-width: $desktop-breakpoint) {
+		height: 55px;
+	}
 }
 
 .answer-group {
@@ -37,21 +40,7 @@
 	width: 20rem;
 }*/
 
-@media (max-width: $desktop-breakpoint) {
-	.text-input {
-		border: 1px solid #cacccd;
-		font-size: $font-size-small;
-		font-weight: 300;
-		height: 41px;
-		padding: $s-size;
-	}
-	.text-input__answer {
-		margin-left: 10px;
-	}
-	.textarea {
-		height: 55px;
-	}
-}
+
 
 
 
