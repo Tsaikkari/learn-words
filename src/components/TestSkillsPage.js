@@ -7,7 +7,7 @@ export class TestSkillsPage extends React.Component {
     this.state = {
       pickedWord: undefined,
       pickedTranslation: undefined,
-      className: '',
+      iconName: '',
       error: ''
     };
     this.input = React.createRef();
@@ -23,7 +23,7 @@ export class TestSkillsPage extends React.Component {
       this.setState(() => ({ pickedWord, pickedTranslation, error: '' }));
     }                
   }
-  // TODO: feedback should fire when submit button clicked instead of pick word button
+ 
   render() {
     return (
       <div className="content-container">
@@ -46,11 +46,14 @@ export class TestSkillsPage extends React.Component {
           <button 
             className="button button--submit" 
             onClick={this.onSubmit = () => {
+              (!this.state.translation && this.setState(() => ({
+                error: 'Please provide a translation'
+              })));
               this.input.current.value === this.state.pickedTranslation
             ?
-              this.state.className = "fas fa-check-circle fa-2x"
+              this.state.iconName = "fas fa-check-circle fa-2x"
             : 
-              this.state.className = "fas fa-times-circle fa-2x";
+              this.state.iconName = "fas fa-times-circle fa-2x";
 
               this.input.current.value = '';
             }
@@ -58,7 +61,7 @@ export class TestSkillsPage extends React.Component {
           >
             Submit
           </button>
-          <i className={this.onSubmit && this.state.className}/>
+          <i className={this.onSubmit && this.state.iconName}/>
         </div>
       </div>
     );
