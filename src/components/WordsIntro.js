@@ -7,7 +7,7 @@ const WordsIntro = () => {
 			<div className="content-container">
 				<div className="page-header__actions">
 					<Link className="button" to="/create">Add Word</Link>
-          <Link className="test" to="/test">Test</Link>
+          <Link className="test" to="/test">Memory Test</Link>
 				</div>
 			</div>
 		</div>
