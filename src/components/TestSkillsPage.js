@@ -7,22 +7,27 @@ export class TestSkillsPage extends React.Component {
     this.state = {
       pickedWord: undefined,
       pickedTranslation: undefined,
-      className: ''
+      className: '',
+      error: ''
     };
     this.input = React.createRef();
   }
   onHandlePick = () => {    
-    const randomNumber = Math.floor(Math.random() * this.props.words.length);
-    const randomWordItem = this.props.words[randomNumber];
-    const pickedWord = randomWordItem.word;
-    const pickedTranslation = randomWordItem.translation; 
-    this.setState(() => ({ pickedWord, pickedTranslation }));  
-    // TODO: add error handler         
+    if (this.props.words.length < 1) {
+      this.setState(() => ({ error: 'Please provide word(s) and translation(s) before testing.' }));
+    } else {
+      const randomNumber = Math.floor(Math.random() * this.props.words.length);
+      const randomWordItem = this.props.words[randomNumber];
+      const pickedWord = randomWordItem.word;
+      const pickedTranslation = randomWordItem.translation;  
+      this.setState(() => ({ pickedWord, pickedTranslation, error: '' }));
+    }                
   }
   // TODO: feedback should fire when submit button clicked instead of pick word button
   render() {
     return (
       <div className="content-container">
+      {this.state.error && <p className="form__error">{this.state.error}</p>} 
         <button 
           className="button button--random-word" 
           onClick={this.onHandlePick}
@@ -34,7 +39,7 @@ export class TestSkillsPage extends React.Component {
           <input
             type="text"
             className="text-input text-input__answer"
-            placeholder="Your Answer"
+            placeholder="Your Translation"
             autoFocus
             ref={this.input}     
           />
@@ -44,18 +49,16 @@ export class TestSkillsPage extends React.Component {
               this.input.current.value === this.state.pickedTranslation
             ?
               this.state.className = "fas fa-check-circle fa-2x"
-    
             : 
               this.state.className = "fas fa-times-circle fa-2x";
+
               this.input.current.value = '';
             }
           }
           >
             Submit
           </button>
-          <i className={this.onSubmit && this.state.className} 
-            style={this.onSubmit && {display: "block"}} 
-          />
+          <i className={this.onSubmit && this.state.className}/>
         </div>
       </div>
     );
