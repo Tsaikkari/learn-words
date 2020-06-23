@@ -21,29 +21,28 @@ export class TestSkillsPage extends React.Component {
       const pickedWord = randomWordItem.word;
       const pickedTranslation = randomWordItem.translation;  
       this.setState(() => ({ pickedWord, pickedTranslation, error: '' }));
-    }                
+    }              
   }
 
   onSubmit = () => {
-    /*if (this.state.translation === '') {
+    if (this.state.translation === '') {
       this.setState(() => ({ error: 'Please provide a translation' }));  // TODO: error message should show up if no translation provided
-    } else {
-      this.setState(() => ({ error: '' }));*/
+    } else 
+      //this.setState(() => ({ error: '' }));
       if (this.input.current.value === this.state.pickedTranslation) {
         this.setState(() => ({ 
           error: '',
           iconName: "fas fa-check-circle fa-2x"
         }));
-      this.input.current.value = '';
       } else {
         this.setState(() => ({ 
           error: '',
           iconName: "fas fa-times-circle fa-2x"
         }));
-        this.input.current.value = '';
       }
-    //}
-  }
+      this.input.current.value = '';
+    }
+  //}
  
   render() {
     return (
@@ -61,8 +60,7 @@ export class TestSkillsPage extends React.Component {
             type="text"
             className="text-input text-input__answer"
             placeholder="Your Translation"
-            autoFocus
-            ref={this.input}     
+            ref={this.input}      
           />
           <button 
             className="button button--submit" 
