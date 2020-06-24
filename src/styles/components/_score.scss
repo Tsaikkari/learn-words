@@ -1,0 +1,17 @@
+.upper-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.score {
+  display: flex;
+  justify-content: space-between;
+}
+
+.right-answer {
+  border: solid 1px $grey;
+}
+
+.wrong-answer {
+  border: solid 1px $grey;
+}

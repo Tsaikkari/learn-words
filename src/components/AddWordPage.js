@@ -11,9 +11,9 @@ export class AddWordPage extends React.Component {
   render() {
     return (
       <div>
-        <div className="page-header">
+        <div className="middle-section">
           <div className="content-container">
-            <h1 className="page-header__title">Add Word</h1>
+            <h1 className="middle-section__title">Add Word</h1>
           </div>
         </div>
         <div className="content-container">

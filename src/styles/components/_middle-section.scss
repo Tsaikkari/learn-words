@@ -1,4 +1,4 @@
-.page-header {
+.middle-section {
 	background: white;
 	border-top: 1px solid #f2ccb1;
 	padding: $l-size;
@@ -9,12 +9,12 @@
 	}
 }
 
-.page-header__actions {
+.middle-section__actions {
 	margin-top: $m-size;
 	margin-bottom: $m-size;
 }
 
-.page-header__title {
+.middle-section__title {
 	color: $grey;
 	font-weight: 300;
 	margin: 0;

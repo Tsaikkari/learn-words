@@ -48,6 +48,9 @@ export class TestSkillsPage extends React.Component {
   render() {
     return (
       <div className="content-container">
+      <h2>Test Skills</h2>
+      <div className="upper-group">
+      <div className="pick-word-button">
       {this.state.error && <p className="form__error">{this.state.error}</p>} 
         <button 
           className="button button--random-word" 
@@ -55,7 +58,19 @@ export class TestSkillsPage extends React.Component {
         >
           Pick Word
         </button>
+      </div>
+      <div className="score">
+        <div className="score-result rights-score">
+          <i className="fas fa-check-circle fa-2x"></i><br></br>
+          <p className="right-answer">0</p>
+        </div>
+        <div className="score-result wrongs-score">
+          <i className="fas fa-times-circle fa-2x"></i><br></br>
+          <p className="wrong-answer">0</p>
+        </div>
+      </div>
         <h3 className="picked-word">{this.state.pickedWord}</h3>
+      </div>
         <div className="answer-group">
           <input
             type="text"

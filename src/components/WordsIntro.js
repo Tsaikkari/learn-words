@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 const WordsIntro = () => {
 	return (
-		<div className="page-header">
+		<div className="middle-section">
 			<div className="content-container">
-				<div className="page-header__actions">
+				<div className="middle-section__actions">
 					<Link className="button" to="/create">Add Word</Link>
           <Link className="test" to="/test">Memory Test</Link>
 				</div>
