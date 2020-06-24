@@ -14,14 +14,15 @@ export class TestSkillsPage extends React.Component {
   }
   onHandlePick = () => {    
     if (this.props.words.length < 1) {
-      this.setState(() => ({ error: 'Please provide word(s) and translation(s) before testing.' }));
+      this.setState(() => ({ error: 'Please provide word(s) and translation before testing.' }));
     } else {
       const randomNumber = Math.floor(Math.random() * this.props.words.length);
       const randomWordItem = this.props.words[randomNumber];
       const pickedWord = randomWordItem.word;
       const pickedTranslation = randomWordItem.translation;  
       this.setState(() => ({ pickedWord, pickedTranslation, error: '' }));
-    }              
+    }   
+    document.getElementById('answer').focus();         
   }
 
   onSubmit = () => {
@@ -58,6 +59,7 @@ export class TestSkillsPage extends React.Component {
         <div className="answer-group">
           <input
             type="text"
+            id="answer"
             className="text-input text-input__answer"
             placeholder="Your Translation"
             ref={this.input}      
