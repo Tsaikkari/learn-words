@@ -27,7 +27,7 @@ export class TestSkillsPage extends React.Component {
     document.getElementById('answer').focus();         
   }
   
-  onSubmit = (prevState) => {
+  onSubmit = () => {
     if (this.input.current.value == this.state.pickedTranslation) {
       this.setState((prevState) => ({ 
         error: '',
@@ -45,16 +45,12 @@ export class TestSkillsPage extends React.Component {
     } 
     this.input.current.value = '';
   }
-   
-  /*handleReset = () => {
-    if (this.onSubmit()) {
-      this.setState(() => ({
-        rightAnswer = 0;
-        wrongAnswer = 0;
-      }));
+
+  /*showGif = (prevState) => {
+    if (prevState.rightAnswer / 2 === 0) {
+      return <img className="feedback-image" src="/images/well-done.gif" style={{display: "block"}}/>
     }
   }*/
-
   render() {
     return (
       <div className="content-container">
@@ -62,11 +58,11 @@ export class TestSkillsPage extends React.Component {
           <h1 className="top-group__title">Test Skills</h1>
           <div className="score">
             <div className="score-result rights-score">
-              <i className="fas fa-check-circle fa-2x"></i><br></br>
+              <i className="fas fa-check-circle fa-3x"></i><br></br>
               <p className="right-answer">{this.onSubmit && this.state.rightAnswer}</p>
             </div>
             <div className="score-result wrongs-score">
-              <i className="fas fa-times-circle fa-2x"></i><br></br>
+              <i className="fas fa-times-circle fa-3x"></i><br></br>
               <p className="wrong-answer">{this.onSubmit && this.state.wrongAnswer}</p>
             </div>
           </div>
@@ -78,7 +74,10 @@ export class TestSkillsPage extends React.Component {
           onClick={this.onHandlePick}
         >
           Pick Word
-        </button>
+        </button>{(this.state.rightAnswer % 10 === 0 && this.state.rightAnswer !== 0) ? 
+        <img className="feedback-image" src="/images/well-done.gif" style={{display: "block"}}/> 
+        : 
+        <img className="feedback-image" src="/images/well-done.gif" style={{display: "none"}}/>} 
       </div>
         <h3 className="picked-word">{this.state.pickedWord}</h3>
       

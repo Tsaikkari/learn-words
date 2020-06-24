@@ -15,10 +15,34 @@
 	}
 }
 
+.feedback-image {
+  //display: none;
+  height: 20rem;
+  margin-left: 5rem;
+  position: absolute;
+  top: 19%;
+  right: 34%;
+	width: 15rem;
+}
+
+@media (max-width: $desktop-breakpoint) {
+  i.fa-check-circle, i.fa-times-circle {
+    font-size: 3.5rem;
+  }
+  .feedback-image {
+    //display: none;
+    height: 10rem;
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 7rem;
+  }
+}
+
 .score {
   display: flex;
   justify-content: space-between;
-  padding-right: 2.5rem;
+  padding-right: 0.6rem;
 }
 
 .score-result {
@@ -29,5 +53,7 @@
   border: solid 1px $grey;
   text-align: center;
 }
+
+
 
 
