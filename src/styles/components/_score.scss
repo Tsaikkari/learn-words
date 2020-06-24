@@ -1,17 +1,33 @@
-.upper-group {
+.top-group {
   display: flex;
   justify-content: space-between;
+}
+
+.top-group__title {
+  color: $grey;
+	font-weight: 300;
+	margin: 0;
+	span {
+		font-weight: 700;
+	}
+	@media (max-width: $desktop-breakpoint) {
+		font-size: $m-size;
+	}
 }
 
 .score {
   display: flex;
   justify-content: space-between;
+  padding-right: 2.5rem;
 }
 
-.right-answer {
-  border: solid 1px $grey;
+.score-result {
+  margin-right: $s-size;
 }
 
-.wrong-answer {
+.right-answer, .wrong-answer {
   border: solid 1px $grey;
+  text-align: center;
 }
+
+
