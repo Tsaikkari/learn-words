@@ -40,8 +40,8 @@ export class TestSkillsPage extends React.Component {
         iconName: "fas fa-times-circle fa-2x",
         wrongAnswer: prevState.wrongAnswer + 1
       }));
-    } else if (!this.state.translation && this.input.current.value === '') {
-      this.setState(() => ({ error: 'Please provide a translation' }));  // TODO: error message should show up only if no translation provided
+    } else  {
+      this.setState(() => ({ error: 'Please provide a translation' }));  
     } 
     this.input.current.value = '';
   }
