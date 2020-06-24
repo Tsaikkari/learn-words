@@ -28,25 +28,21 @@ export class TestSkillsPage extends React.Component {
   }
 
   onSubmit = (prevState) => {
-    if (!this.state.translation) {
-      this.setState(() => ({ error: 'Please provide a translation' }));  // TODO: error message should show up only if no translation provided
-    } else {
-      this.setState(() => ({ error: '' }));
-    }
-    if (this.input.current.value === this.state.pickedTranslation) {
+    if (this.input.current.value == this.state.pickedTranslation) {
       this.setState(() => ({ 
-        //error: '',
+        error: '',
         iconName: "fas fa-check-circle fa-2x",
         rightAnswer: prevState.rightAnswer + 1 // TODO: fix NaN
       }));
-      
-    } else {
-      this.setState(() => ({ 
-        //error: '',
+    } else if (this.input.current.value != '' && this.input.current.value != this.state.pickedTranslation) {
+      this.setState(() => ({
+        error: '',
         iconName: "fas fa-times-circle fa-2x",
         wrongAnswer: prevState.wrongAnswer + 1
       }));
-    }
+    } else if (!this.state.translation && this.input.current.value === '') {
+      this.setState(() => ({ error: 'Please provide a translation' }));  // TODO: error message should show up only if no translation provided
+    } 
     this.input.current.value = '';
   }
    
