@@ -8,7 +8,9 @@ export class TestSkillsPage extends React.Component {
       pickedWord: undefined,
       pickedTranslation: undefined,
       iconName: '',
-      error: ''
+      error: '',
+      rightAnswer: 0,
+      wrongAnswer: 0
     };
     this.input = React.createRef();
   }
@@ -25,25 +27,36 @@ export class TestSkillsPage extends React.Component {
     document.getElementById('answer').focus();         
   }
 
-  onSubmit = () => {
-    if (this.state.translation === '') {
-      this.setState(() => ({ error: 'Please provide a translation' }));  // TODO: error message should show up if no translation provided
-    } else 
-      //this.setState(() => ({ error: '' }));
-      if (this.input.current.value === this.state.pickedTranslation) {
-        this.setState(() => ({ 
-          error: '',
-          iconName: "fas fa-check-circle fa-2x"
-        }));
-      } else {
-        this.setState(() => ({ 
-          error: '',
-          iconName: "fas fa-times-circle fa-2x"
-        }));
-      }
-      this.input.current.value = '';
+  onSubmit = (prevState) => {
+    if (!this.state.translation) {
+      this.setState(() => ({ error: 'Please provide a translation' }));  // TODO: error message should show up only if no translation provided
+    } else {
+      this.setState(() => ({ error: '' }));
     }
-  //}
+    if (this.input.current.value === this.state.pickedTranslation) {
+      this.setState(() => ({ 
+        //error: '',
+        iconName: "fas fa-check-circle fa-2x",
+        rightAnswer: prevState.rightAnswer + 1 // TODO: fix NaN
+      }));
+      
+    } else {
+      this.setState(() => ({ 
+        //error: '',
+        iconName: "fas fa-times-circle fa-2x",
+        wrongAnswer: prevState.wrongAnswer + 1
+      }));
+    }
+    this.input.current.value = '';
+  }
+   
+  /*reset = () => {
+    if (this.onSubmit()) {
+      rightAnswer = 0;
+      wrongAnswer = 0;
+    }
+  }*/
+
   render() {
     return (
       <div className="content-container">
@@ -52,11 +65,11 @@ export class TestSkillsPage extends React.Component {
           <div className="score">
             <div className="score-result rights-score">
               <i className="fas fa-check-circle fa-2x"></i><br></br>
-              <p className="right-answer">0</p>
+              <p className="right-answer">{this.onSubmit && this.state.rightAnswer}</p>
             </div>
             <div className="score-result wrongs-score">
               <i className="fas fa-times-circle fa-2x"></i><br></br>
-              <p className="wrong-answer">0</p>
+              <p className="wrong-answer">{this.onSubmit && this.state.wrongAnswer}</p>
             </div>
           </div>
         </div>
