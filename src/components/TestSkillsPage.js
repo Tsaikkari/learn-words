@@ -26,30 +26,32 @@ export class TestSkillsPage extends React.Component {
     }   
     document.getElementById('answer').focus();         
   }
-
+  
   onSubmit = (prevState) => {
     if (this.input.current.value == this.state.pickedTranslation) {
-      this.setState(() => ({ 
+      this.setState((prevState) => ({ 
         error: '',
         iconName: "fas fa-check-circle fa-2x",
-        rightAnswer: prevState.rightAnswer + 1 // TODO: fix NaN
+        rightAnswer: prevState.rightAnswer + 1
       }));
     } else if (this.input.current.value != '' && this.input.current.value != this.state.pickedTranslation) {
-      this.setState(() => ({
+      this.setState((prevState) => ({
         error: '',
         iconName: "fas fa-times-circle fa-2x",
         wrongAnswer: prevState.wrongAnswer + 1
       }));
-    } else  {
+    } else {
       this.setState(() => ({ error: 'Please provide a translation' }));  
     } 
     this.input.current.value = '';
   }
    
-  /*reset = () => {
+  /*handleReset = () => {
     if (this.onSubmit()) {
-      rightAnswer = 0;
-      wrongAnswer = 0;
+      this.setState(() => ({
+        rightAnswer = 0;
+        wrongAnswer = 0;
+      }));
     }
   }*/
 
