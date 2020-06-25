@@ -51,6 +51,7 @@ export class TestSkillsPage extends React.Component {
 
   render() {
     let [random, submit] = this.buttonClassName;
+    let [pick, check] = this.buttonText;
     return (
       <div className="content-container">
         <div className="top-group">
@@ -70,7 +71,7 @@ export class TestSkillsPage extends React.Component {
       {this.state.error && <p className="form__error">{this.state.error}</p>} 
         <Button 
           className={[random]} 
-          buttonText={this.buttonText[0]}
+          buttonText={[pick]}
           onClick={this.onHandlePick}
         />
         {(this.state.rightAnswer % 10 === 0 && this.state.rightAnswer !== 0) ? 
@@ -90,7 +91,7 @@ export class TestSkillsPage extends React.Component {
           />
           <Button 
             className={[submit]} 
-            buttonText={this.buttonText[1]}
+            buttonText={[check]}
             onClick={this.onSubmit}
           />
           <i className={this.onSubmit && this.state.iconName}/>
