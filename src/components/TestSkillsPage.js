@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Button from './Button';
 
 export class TestSkillsPage extends React.Component {
   constructor(props) {
@@ -12,6 +13,8 @@ export class TestSkillsPage extends React.Component {
       rightAnswer: 0,
       wrongAnswer: 0
     };
+    this.buttonClassName = ["button button--random-word", "button button--submit"];
+    this.buttonText = ['Pick Word', 'Submit'];
     this.input = React.createRef();
   }
   onHandlePick = () => {    
@@ -47,6 +50,7 @@ export class TestSkillsPage extends React.Component {
   }
 
   render() {
+    let [random, submit] = this.buttonClassName;
     return (
       <div className="content-container">
         <div className="top-group">
@@ -64,12 +68,12 @@ export class TestSkillsPage extends React.Component {
         </div>
       <div className="pick-word-button">
       {this.state.error && <p className="form__error">{this.state.error}</p>} 
-        <button 
-          className="button button--random-word" 
+        <Button 
+          className={[random]} 
+          buttonText={this.buttonText[0]}
           onClick={this.onHandlePick}
-        >
-          Pick Word
-        </button>{(this.state.rightAnswer % 10 === 0 && this.state.rightAnswer !== 0) ? 
+        />
+        {(this.state.rightAnswer % 10 === 0 && this.state.rightAnswer !== 0) ? 
         <img className="feedback-image" src="/images/well-done.gif" style={{display: "block"}}/> 
         : 
         <img className="feedback-image" src="/images/well-done.gif" style={{display: "none"}}/>} 
@@ -84,12 +88,11 @@ export class TestSkillsPage extends React.Component {
             placeholder="Your Translation"
             ref={this.input}      
           />
-          <button 
-            className="button button--submit" 
+          <Button 
+            className={[submit]} 
+            buttonText={this.buttonText[1]}
             onClick={this.onSubmit}
-          >
-            Submit
-          </button>
+          />
           <i className={this.onSubmit && this.state.iconName}/>
         </div>
       </div>
