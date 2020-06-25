@@ -28,7 +28,7 @@ export class TestSkillsPage extends React.Component {
   }
   
   onSubmit = () => {
-    if (this.input.current.value == this.state.pickedTranslation) {
+    if (this.input.current.value.trim() == this.state.pickedTranslation.trim()) {
       this.setState((prevState) => ({ 
         error: '',
         iconName: "fas fa-check-circle fa-2x",
@@ -46,11 +46,6 @@ export class TestSkillsPage extends React.Component {
     this.input.current.value = '';
   }
 
-  /*showGif = (prevState) => {
-    if (prevState.rightAnswer / 2 === 0) {
-      return <img className="feedback-image" src="/images/well-done.gif" style={{display: "block"}}/>
-    }
-  }*/
   render() {
     return (
       <div className="content-container">

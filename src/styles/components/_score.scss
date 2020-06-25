@@ -50,7 +50,9 @@
 }
 
 .right-answer, .wrong-answer {
-  border: solid 1px $grey;
+  background: white;
+  border: 1px solid #cacccd;
+  border-radius: 2px;
   text-align: center;
 }
 
