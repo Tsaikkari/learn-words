@@ -6,6 +6,6 @@ const Button = (props) => {
 
 Button.defaultProps = {
   className: "button"
-};
+};  
 
 export default Button;

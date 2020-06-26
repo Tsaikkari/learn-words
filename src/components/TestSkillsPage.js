@@ -31,13 +31,15 @@ export class TestSkillsPage extends React.Component {
   }
   
   onSubmit = () => {
-    if (this.input.current.value.trim() == this.state.pickedTranslation.trim()) {
+    if (this.props.filters.sortBy === "word" && this.input.current.value.trim() == this.state.pickedTranslation.trim() 
+    || this.props.filters.sortBy === "translation" && this.input.current.value.trim() == this.state.pickedWord.trim()) {
       this.setState((prevState) => ({ 
         error: '',
         iconName: "fas fa-check-circle fa-2x",
         rightAnswer: prevState.rightAnswer + 1
       }));
-    } else if (this.input.current.value != '' && this.input.current.value != this.state.pickedTranslation) {
+    } else if (this.props.filters.sortBy === 'word' && this.input.current.value != '' && this.input.current.value != this.state.pickedTranslation 
+    || this.props.filters.sortBy === 'translation' && this.input.current.value != '' && this.input.current.value != this.state.Word ) {
       this.setState((prevState) => ({
         error: '',
         iconName: "fas fa-times-circle fa-2x",
@@ -79,7 +81,7 @@ export class TestSkillsPage extends React.Component {
         : 
         <img className="feedback-image" src="/images/well-done.gif" style={{display: "none"}}/>} 
       </div>
-        <h3 className="picked-word">{this.state.pickedWord}</h3>
+        <h3 className="picked-word">{this.props.filters.sortBy === 'word' ? this.state.pickedWord : this.state.pickedTranslation}</h3>
       
         <div className="answer-group">
           <input
