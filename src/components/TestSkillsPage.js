@@ -82,8 +82,7 @@ export class TestSkillsPage extends React.Component {
         <img className="feedback-image" src="/images/well-done.gif" style={{display: "none"}}/>} 
       </div>
         <h3 className="picked-word">{this.props.filters.sortBy === 'word' ? this.state.pickedWord : this.state.pickedTranslation}</h3>
-      
-        <div className="answer-group">
+      <div className="answer-group">
           <input
             type="text"
             id="answer"
