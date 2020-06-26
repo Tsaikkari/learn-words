@@ -3,20 +3,17 @@ import { connect } from 'react-redux';
 import Button from './Button';
 
 export class TestSkillsPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pickedWord: undefined,
-      pickedTranslation: undefined,
-      iconName: '',
-      error: '',
-      rightAnswer: 0,
-      wrongAnswer: 0
-    };
-    this.buttonClassName = ["button button--random-word", "button button--submit"];
-    this.buttonText = ['Pick Word', 'Submit'];
-    this.input = React.createRef();
-  }
+  state = {
+    pickedWord: undefined,
+    pickedTranslation: undefined,
+    iconName: '',
+    error: '',
+    rightAnswer: 0,
+    wrongAnswer: 0
+  };
+  buttonClassName = ["button button--random-word", "button button--submit"];
+  buttonText = ['Pick Word', 'Submit'];
+  input = React.createRef();
   onHandlePick = () => {    
     if (this.props.words.length < 1) {
       this.setState(() => ({ error: 'Please provide word(s) and translation before testing.' }));
