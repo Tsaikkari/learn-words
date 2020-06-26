@@ -70,8 +70,8 @@ export class TestSkillsPage extends React.Component {
       <div className="pick-word-button">
       {this.state.error && <p className="form__error">{this.state.error}</p>} 
         <Button 
-          className={[random]} 
-          buttonText={[pick]}
+          className={random} 
+          buttonText={pick}
           onClick={this.onHandlePick}
         />
         {(this.state.rightAnswer % 10 === 0 && this.state.rightAnswer !== 0) ? 
@@ -90,8 +90,8 @@ export class TestSkillsPage extends React.Component {
             ref={this.input}      
           />
           <Button 
-            className={[submit]} 
-            buttonText={[check]}
+            className={submit} 
+            buttonText={check}
             onClick={this.onSubmit}
           />
           <i className={this.onSubmit && this.state.iconName}/>
