@@ -1,6 +1,7 @@
 .top-group {
   display: flex;
   justify-content: space-between;
+  padding-top: 5rem;
 }
 
 .top-group__title {
@@ -16,11 +17,10 @@
 }
 
 .feedback-image {
-  //display: none;
   height: 20rem;
   margin-left: 5rem;
   position: absolute;
-  top: 19%;
+  top: 25%;
   right: 34%;
 	width: 15rem;
 }
@@ -30,10 +30,9 @@
     font-size: 3.5rem;
   }
   .feedback-image {
-    //display: none;
     height: 10rem;
     position: absolute;
-    top: 20%;
+    top: 19%;
     right: 10%;
     width: 7rem;
   }
