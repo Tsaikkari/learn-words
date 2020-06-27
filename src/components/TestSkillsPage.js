@@ -25,7 +25,7 @@ export class TestSkillsPage extends React.Component {
       this.setState(() => ({ pickedWord, pickedTranslation, error: '' }));
     }   
     document.getElementById('answer').focus();         
-  }
+  };
   
   onSubmit = () => {
     if (this.props.filters.sortBy === "word" && this.input.current.value.trim() == this.state.pickedTranslation.trim() 
@@ -46,7 +46,7 @@ export class TestSkillsPage extends React.Component {
       this.setState(() => ({ error: 'Please provide a translation' }));  
     } 
     this.input.current.value = '';
-  }
+  };
 
   render() {
     let [random, submit] = this.buttonClassName;
