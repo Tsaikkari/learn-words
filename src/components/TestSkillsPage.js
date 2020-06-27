@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Button from './Button';
+import Score from './Score';
 
 export class TestSkillsPage extends React.Component {
   state = {
@@ -53,19 +54,11 @@ export class TestSkillsPage extends React.Component {
     let [pick, check] = this.buttonText;
     return (
       <div className="content-container">
-        <div className="top-group">
-          <h1 className="top-group__title">Test Skills</h1>
-          <div className="score">
-            <div className="score-result rights-score">
-              <i className="fas fa-check-circle fa-3x"></i><br></br>
-              <p className="right-answer">{this.onSubmit && this.state.rightAnswer}</p>
-            </div>
-            <div className="score-result wrongs-score">
-              <i className="fas fa-times-circle fa-3x"></i><br></br>
-              <p className="wrong-answer">{this.onSubmit && this.state.wrongAnswer}</p>
-            </div>
-          </div>
-        </div>
+        <Score 
+          onClick={this.onSubmit}
+          rightAnswer={this.state.rightAnswer}
+          wrongAnswer={this.state.wrongAnswer}
+        />
       <div className="pick-word-button">
       {this.state.error && <p className="form__error">{this.state.error}</p>} 
         <Button 

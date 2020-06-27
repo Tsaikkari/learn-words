@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import WordForm from './WordForm';
-import { startAddWord } from '../actions/words'
+import { startAddWord } from '../actions/words';
 
 export class AddWordPage extends React.Component {
   onSubmit = (wordItem) => {
