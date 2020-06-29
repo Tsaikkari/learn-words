@@ -40,7 +40,7 @@ export class TestSkillsPage extends React.Component {
         rightAnswer: prevState.rightAnswer + 1
       }));
       const rightScore = this.state.rightAnswer + 1;
-      database.ref('count').set(rightScore);
+      database.ref('users/count/rightAnswer').set(rightScore);
     } else if (this.props.filters.sortBy === 'word' && this.input.current.value != '' && this.input.current.value != this.state.pickedTranslation 
     || this.props.filters.sortBy === 'translation' && this.input.current.value != '' && this.input.current.value != this.state.Word ) {
       this.setState((prevState) => ({
@@ -49,7 +49,7 @@ export class TestSkillsPage extends React.Component {
         wrongAnswer: prevState.wrongAnswer + 1
       }));
       const wrongScore = this.state.wrongAnswer + 1;
-      database.ref('count').set(wrongScore);
+      database.ref('users/count/wrongAnswer').set(wrongScore);
     } else {
       this.setState(() => ({ error: 'Please provide a translation' }));  
     } 
