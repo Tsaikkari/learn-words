@@ -16,6 +16,7 @@ export class TestSkillsPage extends React.Component {
   buttonClassName = ["button button--random-word", "button button--submit"];
   buttonText = ['Pick Word', 'Submit'];
   input = React.createRef();
+
   onHandlePick = () => {    
     if (this.props.words.length < 1) {
       this.setState(() => ({ error: 'Please provide word(s) and translation before testing.' }));
@@ -37,6 +38,7 @@ export class TestSkillsPage extends React.Component {
         iconName: "fas fa-check-circle fa-2x",
         rightAnswer: prevState.rightAnswer + 1
       }));
+      count = this.state.rightAnswer;
       this.props.startIncrementCount(count);
     } else if (this.props.filters.sortBy === 'word' && this.input.current.value != '' && this.input.current.value != this.state.pickedTranslation 
     || this.props.filters.sortBy === 'translation' && this.input.current.value != '' && this.input.current.value != this.state.Word ) {
@@ -45,6 +47,7 @@ export class TestSkillsPage extends React.Component {
         iconName: "fas fa-times-circle fa-2x",
         wrongAnswer: prevState.wrongAnswer + 1
       }));
+      count = this.state.wrongAnswer;
       this.props.startIncrementCount(count);
     } else {
       this.setState(() => ({ error: 'Please provide a translation' }));  
