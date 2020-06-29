@@ -39,9 +39,8 @@ export class TestSkillsPage extends React.Component {
         iconName: "fas fa-check-circle fa-2x",
         rightAnswer: prevState.rightAnswer + 1
       }));
-      const rightScore = this.state.rightAnswer;
+      const rightScore = this.state.rightAnswer + 1;
       database.ref('count').set(rightScore);
-      //this.props.startIncrementCount(rightCount);
     } else if (this.props.filters.sortBy === 'word' && this.input.current.value != '' && this.input.current.value != this.state.pickedTranslation 
     || this.props.filters.sortBy === 'translation' && this.input.current.value != '' && this.input.current.value != this.state.Word ) {
       this.setState((prevState) => ({
@@ -49,9 +48,8 @@ export class TestSkillsPage extends React.Component {
         iconName: "fas fa-times-circle fa-2x",
         wrongAnswer: prevState.wrongAnswer + 1
       }));
-      const wrongScore = this.state.wrongAnswer;
+      const wrongScore = this.state.wrongAnswer + 1;
       database.ref('count').set(wrongScore);
-      //this.props.startIncrementCount(wrongCount);
     } else {
       this.setState(() => ({ error: 'Please provide a translation' }));  
     } 
