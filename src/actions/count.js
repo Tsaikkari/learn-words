@@ -6,6 +6,10 @@ export const incrementCount = ({ incrementBy = 1 } = {}) => ({
   incrementBy
 });
 
+export const startIncrementCount = ({ rightAnswer }) => {
+  
+}
+
 // RESET
 /*export const resetCount = () => ({
   type: 'RESET'

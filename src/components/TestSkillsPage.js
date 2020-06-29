@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startIncrementCount } from '../actions/count';
 import Button from './Button';
 import Score from './Score';
 import database from '../firebase/firebase';
