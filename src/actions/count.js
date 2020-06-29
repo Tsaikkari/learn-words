@@ -12,10 +12,10 @@ export const startIncrementCount = () => {
     const count = {
       count: 0
     };
-    return database.ref(`users/${uid}/count`).update({count}).then(() => {
-      dispatch(incrementCount(count));
+    return database.ref(`users/${uid}/count`).set(count).then(() => {
+      dispatch(incrementCount({count}))
     }).catch((error) => {
-      console.log('error: ', error);
+      console.log(error)
     });
   };
 }

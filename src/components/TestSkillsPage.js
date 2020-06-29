@@ -12,7 +12,6 @@ export class TestSkillsPage extends React.Component {
     error: '',
     rightAnswer: 0,
     wrongAnswer: 0,
-    count: 0
   };
   buttonClassName = ["button button--random-word", "button button--submit"];
   buttonText = ['Pick Word', 'Submit'];
@@ -30,23 +29,23 @@ export class TestSkillsPage extends React.Component {
     document.getElementById('answer').focus();         
   };
   
-  onSubmit = () => {
+  onSubmit = (count) => {
     if (this.props.filters.sortBy === "word" && this.input.current.value.trim() == this.state.pickedTranslation.trim() 
     || this.props.filters.sortBy === "translation" && this.input.current.value.trim() == this.state.pickedWord.trim()) {
-      this.props.startIncrementCount(this.state.count);
       this.setState((prevState) => ({ 
         error: '',
         iconName: "fas fa-check-circle fa-2x",
         rightAnswer: prevState.rightAnswer + 1
       }));
+      this.props.startIncrementCount(count);
     } else if (this.props.filters.sortBy === 'word' && this.input.current.value != '' && this.input.current.value != this.state.pickedTranslation 
     || this.props.filters.sortBy === 'translation' && this.input.current.value != '' && this.input.current.value != this.state.Word ) {
-      props.startIncrementCount(this.state.count);
       this.setState((prevState) => ({
         error: '',
         iconName: "fas fa-times-circle fa-2x",
         wrongAnswer: prevState.wrongAnswer + 1
       }));
+      this.props.startIncrementCount(count);
     } else {
       this.setState(() => ({ error: 'Please provide a translation' }));  
     } 
