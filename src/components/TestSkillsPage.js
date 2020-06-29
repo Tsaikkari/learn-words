@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { startIncrementCount } from '../actions/count';
 import Button from './Button';
 import Score from './Score';
 
@@ -10,7 +11,8 @@ export class TestSkillsPage extends React.Component {
     iconName: '',
     error: '',
     rightAnswer: 0,
-    wrongAnswer: 0
+    wrongAnswer: 0,
+    count: 0
   };
   buttonClassName = ["button button--random-word", "button button--submit"];
   buttonText = ['Pick Word', 'Submit'];
@@ -31,6 +33,7 @@ export class TestSkillsPage extends React.Component {
   onSubmit = () => {
     if (this.props.filters.sortBy === "word" && this.input.current.value.trim() == this.state.pickedTranslation.trim() 
     || this.props.filters.sortBy === "translation" && this.input.current.value.trim() == this.state.pickedWord.trim()) {
+      this.props.startIncrementCount(this.state.count);
       this.setState((prevState) => ({ 
         error: '',
         iconName: "fas fa-check-circle fa-2x",
@@ -38,6 +41,7 @@ export class TestSkillsPage extends React.Component {
       }));
     } else if (this.props.filters.sortBy === 'word' && this.input.current.value != '' && this.input.current.value != this.state.pickedTranslation 
     || this.props.filters.sortBy === 'translation' && this.input.current.value != '' && this.input.current.value != this.state.Word ) {
+      props.startIncrementCount(this.state.count);
       this.setState((prevState) => ({
         error: '',
         iconName: "fas fa-times-circle fa-2x",
@@ -97,4 +101,8 @@ const mapStateToProps = (state) => ({
 	filters: state.filters 
 });
 
-export default connect(mapStateToProps)(TestSkillsPage);
+const mapDispatchToProps = (dispatch) => ({
+  startIncrementCount: ({count}) => dispatch(startIncrementCount(count))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TestSkillsPage);
