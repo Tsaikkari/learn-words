@@ -1,4 +1,4 @@
-import database from '../firebase/firebase';
+/*import database from '../firebase/firebase';
 
 // INCREMENT
 export const incrementCount = ({ incrementBy = 1 } = {}) => ({

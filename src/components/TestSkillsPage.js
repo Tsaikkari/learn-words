@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { startIncrementCount } from '../actions/count';
 import Button from './Button';
 import Score from './Score';
+import database from '../firebase/firebase';
 
 export class TestSkillsPage extends React.Component {
   state = {
@@ -38,8 +39,9 @@ export class TestSkillsPage extends React.Component {
         iconName: "fas fa-check-circle fa-2x",
         rightAnswer: prevState.rightAnswer + 1
       }));
-      count = this.state.rightAnswer;
-      this.props.startIncrementCount(count);
+      const rightScore = this.state.rightAnswer;
+      database.ref('count').set(rightScore);
+      //this.props.startIncrementCount(rightCount);
     } else if (this.props.filters.sortBy === 'word' && this.input.current.value != '' && this.input.current.value != this.state.pickedTranslation 
     || this.props.filters.sortBy === 'translation' && this.input.current.value != '' && this.input.current.value != this.state.Word ) {
       this.setState((prevState) => ({
@@ -47,8 +49,9 @@ export class TestSkillsPage extends React.Component {
         iconName: "fas fa-times-circle fa-2x",
         wrongAnswer: prevState.wrongAnswer + 1
       }));
-      count = this.state.wrongAnswer;
-      this.props.startIncrementCount(count);
+      const wrongScore = this.state.wrongAnswer;
+      database.ref('count').set(wrongScore);
+      //this.props.startIncrementCount(wrongCount);
     } else {
       this.setState(() => ({ error: 'Please provide a translation' }));  
     } 
@@ -103,8 +106,8 @@ const mapStateToProps = (state) => ({
 	filters: state.filters 
 });
 
-const mapDispatchToProps = (dispatch) => ({
+/*const mapDispatchToProps = (dispatch) => ({
   startIncrementCount: ({count}) => dispatch(startIncrementCount(count))
-});
+});*/
 
-export default connect(mapStateToProps, mapDispatchToProps)(TestSkillsPage);
+export default connect(mapStateToProps)(TestSkillsPage);

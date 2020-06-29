@@ -1,4 +1,4 @@
-export default (state = { count: 0 }, action) => {
+/*export default (state = { count: 0 }, action) => {
   switch (action.type) {
     case 'INCREMENT':
       return {
@@ -11,4 +11,4 @@ export default (state = { count: 0 }, action) => {
     default: 
       return state;
   }
-};
+};*/
