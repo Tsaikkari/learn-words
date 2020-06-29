@@ -14,6 +14,8 @@ export const startIncrementCount = () => {
     };
     return database.ref(`users/${uid}/count`).update({count}).then(() => {
       dispatch(incrementCount(count));
+    }).catch((error) => {
+      console.log('error: ', error);
     });
   };
 }
