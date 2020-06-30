@@ -30,7 +30,7 @@ export class TestSkillsPage extends React.Component {
     document.getElementById('answer').focus();         
   };
   
-  onSubmit = (count) => {
+  onSubmit = () => {
     if (this.props.filters.sortBy === "word" && this.input.current.value.trim() == this.state.pickedTranslation.trim() 
     || this.props.filters.sortBy === "translation" && this.input.current.value.trim() == this.state.pickedWord.trim()) {
       this.setState((prevState) => ({ 
