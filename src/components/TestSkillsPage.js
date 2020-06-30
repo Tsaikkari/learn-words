@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { startIncrementRightCount, startIncrementWrongCount } from '../actions/count';
 import Button from './Button';
 import Score from './Score';
-import database from '../firebase/firebase';
 
 export class TestSkillsPage extends React.Component {
   state = {
@@ -38,8 +38,8 @@ export class TestSkillsPage extends React.Component {
         iconName: "fas fa-check-circle fa-2x",
         rightAnswer: prevState.rightAnswer + 1
       }));
-      const rightScore = this.state.rightAnswer + 1;
-      database.ref('users/count/rightAnswer').set(rightScore);
+      const rightAnswer = this.state.rightAnswer + 1;
+      this.props.startIncrementRightCount({ rightAnswer });
     } else if (this.props.filters.sortBy === 'word' && this.input.current.value != '' && this.input.current.value != this.state.pickedTranslation 
     || this.props.filters.sortBy === 'translation' && this.input.current.value != '' && this.input.current.value != this.state.Word ) {
       this.setState((prevState) => ({
@@ -47,8 +47,8 @@ export class TestSkillsPage extends React.Component {
         iconName: "fas fa-times-circle fa-2x",
         wrongAnswer: prevState.wrongAnswer + 1
       }));
-      const wrongScore = this.state.wrongAnswer + 1;
-      database.ref('users/count/wrongAnswer').set(wrongScore);
+      const wrongAnswer = this.state.wrongAnswer + 1;
+      this.props.startIncrementWrongCount({ wrongAnswer });
     } else {
       this.setState(() => ({ error: 'Please provide a translation' }));  
     } 
@@ -103,8 +103,9 @@ const mapStateToProps = (state) => ({
 	filters: state.filters 
 });
 
-/*const mapDispatchToProps = (dispatch) => ({
-  startIncrementCount: ({count}) => dispatch(startIncrementCount(count))
-});*/
+const mapDispatchToProps = (dispatch) => ({
+  startIncrementRightCount: (rightAnswer) => dispatch(startIncrementRightCount(rightAnswer)),
+  startIncrementWrongCount: (wrongAnswer) => dispatch(startIncrementWrongCount(wrongAnswer))
+});
 
-export default connect(mapStateToProps)(TestSkillsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(TestSkillsPage);

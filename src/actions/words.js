@@ -73,8 +73,6 @@ export const startSetWords = () => {
         });
       });
       dispatch(setWords(words));
-      console.log(words); // fetches word item objects inside array
-      console.log(getState()); // but returns an empty array here
     }).catch((e) => {
       console.log('Error fetching data', e);
     });
