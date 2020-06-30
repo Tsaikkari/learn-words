@@ -24,6 +24,16 @@ const sortByWrongAnswer = () => ({
   type: 'SORT_BY_WRONG_ANSWER'
 });
 
+// SORT_BY_PICKED_WORD
+const sortByPickedWord = () => ({
+  type: 'SORT_BY_PICKED_WORD'
+});
+
+// SORT_BY_PICKED_TRANSLATION
+const sortByPickedTranslation = () => ({
+  type: 'SORT_BY_PICKED_TRANSLATION'
+});
+
 // Reducers
 
 // Scores Reducer
@@ -46,7 +56,9 @@ const scoresReducer = (state = scoresReducerDefaultState, action) => {
 
 const sortByReducerDefaultState = {
   rightAnswer: undefined,
-  wrongAnswer: undefined
+  wrongAnswer: undefined,
+  pickedWord: undefined,
+  pickedTranslation: undefined
 }
 
 const sortByReducer = (state = sortByReducerDefaultState, action) => {
@@ -60,6 +72,16 @@ const sortByReducer = (state = sortByReducerDefaultState, action) => {
       return {
         ...state,
         wrongAnswer: action.wrongAnswer
+      };
+    case 'PICKED_WORD':
+      return {
+        ...state,
+        pickedWord: action.pickedWord
+      };
+    case 'PICKED_TRANSLATION':
+      return {
+        ...state,
+        pickedTranslation: action.pickedTranslation
       };
     default: 
       return state;
