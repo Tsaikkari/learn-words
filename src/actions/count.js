@@ -29,7 +29,7 @@ export const setCount = (count = {rightAnswer: 0, wrongAnswer: 0}) => ({
   count
 });
 
-/*export const startSetCount = () => {
+export const startSetCount = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     return database.ref(`users/${uid}/count`).once('value').then((snapshot) => {
