@@ -33,7 +33,7 @@ export const startSetCount = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     return database.ref(`users/${uid}/count`).once('value').then((snapshot) => {
-      let count = {rightAnswer: snapshot.child().val(), wrongAnswer: snapshot.child().val()}
+      count = {rightAnswer: snapshot.child().val(), wrongAnswer: snapshot.child().val()}
       count = snapshot.val();
       dispatch(setCount(count));  
       console.log(count)

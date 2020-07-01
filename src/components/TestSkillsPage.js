@@ -28,6 +28,7 @@ export class TestSkillsPage extends React.Component {
     document.getElementById('answer').focus();         
   };
   // TODO: adds one point only to one of the scores at the time; score on the screen must match with the database score
+  // TODO: 
   onSubmit = () => {
     const rightAnswer = this.props.count.rightAnswer;
     const wrongAnswer = this.props.count.wrongAnswer;
