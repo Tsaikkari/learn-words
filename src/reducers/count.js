@@ -1,3 +1,5 @@
+//const countReducerDefaultState = { rightAnswer: 0, wrongAnswer: 0 }
+
 export default (state = { rightAnswer: 0, wrongAnswer: 0 }, action) => {
   switch (action.type) {
     case 'INCREMENT':
@@ -10,6 +12,8 @@ export default (state = { rightAnswer: 0, wrongAnswer: 0 }, action) => {
         rightAnswer: 0,
         wrongAnswer: 0
       };
+    case 'SET':
+      return action.count;
     default: 
       return state;
   }

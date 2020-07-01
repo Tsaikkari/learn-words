@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startIncrementRightCount, startIncrementWrongCount } from '../actions/count';
+import { startIncrementCount } from '../actions/count';
 import Button from './Button';
 import Score from './Score';
 
@@ -10,8 +10,6 @@ export class TestSkillsPage extends React.Component {
     pickedTranslation: undefined,
     iconName: '',
     error: '',
-    rightAnswer: 0,
-    wrongAnswer: 0,
   };
   buttonClassName = ["button button--random-word", "button button--submit"];
   buttonText = ['Pick Word', 'Submit'];
@@ -36,19 +34,16 @@ export class TestSkillsPage extends React.Component {
       this.setState((prevState) => ({ 
         error: '',
         iconName: "fas fa-check-circle fa-2x",
-        rightAnswer: prevState.rightAnswer + 1
       }));
-      const rightAnswer = this.state.rightAnswer + 1;
-      this.props.startIncrementRightCount({ rightAnswer });
+      this.props.startIncrementCount(this.props.count.rightAnswer);
+      console.log(this.props.count.rightAnswer)
     } else if (this.props.filters.sortBy === 'word' && this.input.current.value != '' && this.input.current.value != this.state.pickedTranslation 
     || this.props.filters.sortBy === 'translation' && this.input.current.value != '' && this.input.current.value != this.state.Word ) {
       this.setState((prevState) => ({
         error: '',
         iconName: "fas fa-times-circle fa-2x",
-        wrongAnswer: prevState.wrongAnswer + 1
       }));
-      const wrongAnswer = this.state.wrongAnswer + 1;
-      this.props.startIncrementWrongCount({ wrongAnswer });
+      this.props.startIncrementCount(this.props.count.wrongAnswer);
     } else {
       this.setState(() => ({ error: 'Please provide a translation' }));  
     } 
@@ -62,8 +57,8 @@ export class TestSkillsPage extends React.Component {
       <div className="content-container">
         <Score 
           onClick={this.onSubmit}
-          rightAnswer={this.state.rightAnswer}
-          wrongAnswer={this.state.wrongAnswer}
+          rightAnswer={this.props.count.rightAnswer}
+          wrongAnswer={this.props.count.wrongAnswer}
         />
       <div className="pick-word-button">
       {this.state.error && <p className="form__error">{this.state.error}</p>} 
@@ -100,12 +95,13 @@ export class TestSkillsPage extends React.Component {
 
 const mapStateToProps = (state) => ({
   words: state.words,
-	filters: state.filters 
+  filters: state.filters,
+  count: state.count
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  startIncrementRightCount: (rightAnswer) => dispatch(startIncrementRightCount(rightAnswer)),
-  startIncrementWrongCount: (wrongAnswer) => dispatch(startIncrementWrongCount(wrongAnswer))
+  startIncrementCount: (rightAnswer) => dispatch(startIncrementCount(rightAnswer)),
+  startIncrementCount: (wrongAnswer) => dispatch(startIncrementCount(wrongAnswer))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TestSkillsPage);

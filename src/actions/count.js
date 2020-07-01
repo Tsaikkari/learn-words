@@ -6,23 +6,51 @@ export const incrementCount = ({ incrementBy = 1 } = {}) => ({
   incrementBy
 });
 
-export const startIncrementRightCount = ({rightAnswer = 0 } = {}) => {
+export const startIncrementCount = ({ rightAnswer = 0, wrongAnswer = 0 } = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/count/rightAnswer`).set(rightAnswer).then(() => {
-      dispatch(incrementCount(rightAnswer));
-    });
+    if (rightAnswer) {
+      return database.ref(`users/${uid}/count/rightAnswer`).set(rightAnswer).then(() => {
+        dispatch(incrementCount(rightAnswer));
+      });
+    } else if (wrongAnswer) {
+      return database.ref(`users/${uid}/count/wrongAnswer`).set(wrongAnswer).then(() => {
+        dispatch(incrementCount(wrongAnswer));
+      }).catch((e) => {
+        console.log("Error when fetching data", e)
+      });
+    }
   };
 };
 
-export const startIncrementWrongCount = (wrongAnswer = {}) => {
+// SET
+export const setCount = (count) => ({
+  type: 'SET',
+  count
+});
+
+export const startSetCount = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/count/wrongAnswer`).set(wrongAnswer).then(() => {
-      dispatch(incrementCount(wrongAnswer));
+    return database.ref(`users/${uid}/count`).once('value').then((snapshot) => {
+      /*let count = {}
+      snapshot.forEach((childSnapshot) => {
+        count = {
+          id: childSnapshot.key,
+          ...childSnapshot.val()
+        }
+        dispatch(setCount(count));
+        console.log(count)
+      });*/
+      let count = {}
+      count = snapshot.val();
+      dispatch(setCount(count));
+      console.log(count)
+    }).catch((e) => {
+      console.log('Error fetching data', e);
     });
-  };
-};
+  }
+}
 
 // RESET
 /*export const resetCount = () => ({

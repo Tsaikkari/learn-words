@@ -18,7 +18,6 @@ export default () => {
    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
    composeEnhancers(applyMiddleware(thunk))
   );
-  console.log(store.getState());
   return store;
 };
 

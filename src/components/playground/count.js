@@ -14,6 +14,12 @@ export const resetCount = () => ({
   type: 'RESET'
 });
 
+// SET
+export const setCount = (count) => ({
+  type: 'RESET',
+  count
+});
+
 // SORT_BY_RIGHT_ANSWER
 const sortByRightAnswer = () => ({
   type: 'SORT_BY_RIGHT_ANSWER'
@@ -37,7 +43,7 @@ const sortByPickedTranslation = () => ({
 // Reducers
 
 // Scores Reducer
-const scoresReducerDefaultState = [];
+const scoresReducerDefaultState = { rightAnswerCount: 0, wrongAnswerCount: 0 };
 const scoresReducer = (state = scoresReducerDefaultState, action) => {
   switch (action.type) {
     case 'INCREMENT':
@@ -45,10 +51,12 @@ const scoresReducer = (state = scoresReducerDefaultState, action) => {
         count: state.count + action.incrementBy
       };
     case 'RESET':
-      return [{
+      return {
         rightAnswerCount: 0,
         wrongAnswerCount: 0
-      }];
+      };
+    case 'SET':
+      return action.count;
     default: 
       return state;
   }
