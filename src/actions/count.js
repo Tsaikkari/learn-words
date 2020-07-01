@@ -33,21 +33,12 @@ export const startSetCount = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     return database.ref(`users/${uid}/count`).once('value').then((snapshot) => {
-      /*let count = {}
-      snapshot.forEach((childSnapshot) => {
-        count = {
-          id: childSnapshot.key,
-          ...childSnapshot.val()
-        }
-        dispatch(setCount(count));
-        console.log(count)
-      });*/
-      let count = {}
+      let count = {rightAnswer: snapshot.child().val(), wrongAnswer: snapshot.child().val()}
       count = snapshot.val();
-      dispatch(setCount(count));
+      dispatch(setCount(count));  
       console.log(count)
     }).catch((e) => {
-      console.log('Error fetching data', e);
+        console.log('Error fetching data', e);
     });
   }
 }
