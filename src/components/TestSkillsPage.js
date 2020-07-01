@@ -9,7 +9,9 @@ export class TestSkillsPage extends React.Component {
     pickedWord: undefined,
     pickedTranslation: undefined,
     iconName: '',
-    error: ''
+    error: '',
+    rightAnswer: 0,
+    wrongAnswer: 0,
   };
   buttonClassName = ["button button--random-word", "button button--submit"];
   buttonText = ['Pick Word', 'Submit'];
@@ -27,25 +29,26 @@ export class TestSkillsPage extends React.Component {
     }   
     document.getElementById('answer').focus();         
   };
-  // TODO: adds one point only to one of the scores at the time; score on the screen must match with the database score
-  // TODO: 
+  
   onSubmit = () => {
-    const rightAnswer = this.props.count.rightAnswer;
-    const wrongAnswer = this.props.count.wrongAnswer;
     if (this.props.filters.sortBy === "word" && this.input.current.value.trim() == this.state.pickedTranslation.trim() 
     || this.props.filters.sortBy === "translation" && this.input.current.value.trim() == this.state.pickedWord.trim()) {
-      this.props.startIncrementCount({rightAnswer});
-      this.setState(() => ({ 
+      this.setState((prevState) => ({ 
         error: '',
-        iconName: "fas fa-check-circle fa-2x"
+        iconName: "fas fa-check-circle fa-2x",
+        rightAnswer: prevState.rightAnswer + 1
       }));
+      const rightAnswer = this.state.rightAnswer + 1;
+      this.props.startIncrementCount({ rightAnswer });
     } else if (this.props.filters.sortBy === 'word' && this.input.current.value != '' && this.input.current.value != this.state.pickedTranslation 
     || this.props.filters.sortBy === 'translation' && this.input.current.value != '' && this.input.current.value != this.state.Word ) {
-      this.props.startIncrementCount({wrongAnswer});
-      this.setState(() => ({
+      this.setState((prevState) => ({
         error: '',
-        iconName: "fas fa-times-circle fa-2x"
+        iconName: "fas fa-times-circle fa-2x",
+        wrongAnswer: prevState.wrongAnswer + 1
       }));
+      const wrongAnswer = this.state.wrongAnswer + 1;
+      this.props.startIncrementCount({ wrongAnswer });
     } else {
       this.setState(() => ({ error: 'Please provide a translation' }));  
     } 
@@ -59,8 +62,8 @@ export class TestSkillsPage extends React.Component {
       <div className="content-container">
         <Score 
           onClick={this.onSubmit}
-          rightAnswer={this.props.count.rightAnswer}
-          wrongAnswer={this.props.count.wrongAnswer}
+          rightAnswer={this.state.rightAnswer}
+          wrongAnswer={this.state.wrongAnswer}
         />
       <div className="pick-word-button">
       {this.state.error && <p className="form__error">{this.state.error}</p>} 
@@ -97,8 +100,7 @@ export class TestSkillsPage extends React.Component {
 
 const mapStateToProps = (state) => ({
   words: state.words,
-  filters: state.filters,
-  count: state.count
+	filters: state.filters 
 });
 
 const mapDispatchToProps = (dispatch) => ({

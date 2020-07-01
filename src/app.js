@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { startSetWords } from './actions/words';
-//import { startIncrementCount } from './actions/count';
-import { startSetCount } from './actions/count';
+import { startIncrementCount } from './actions/count';
+//import { startSetCount } from './actions/count';
 import { login, logout } from './actions/auth';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
@@ -34,8 +34,8 @@ ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
-    //store.dispatch(startIncrementCount());
-    store.dispatch(startSetCount());
+    store.dispatch(startIncrementCount());
+    //store.dispatch(startSetCount());
     store.dispatch(startSetWords()).then(() => {
       renderApp();
       if (history.location.pathname === '/') {

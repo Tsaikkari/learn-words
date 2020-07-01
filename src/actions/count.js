@@ -24,16 +24,16 @@ export const startIncrementCount = ({ rightAnswer = 0, wrongAnswer = 0 } = {}) =
 };
 
 // SET
-export const setCount = (count) => ({
+export const setCount = (count = {rightAnswer: 0, wrongAnswer: 0}) => ({
   type: 'SET',
   count
 });
 
-export const startSetCount = () => {
+/*export const startSetCount = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     return database.ref(`users/${uid}/count`).once('value').then((snapshot) => {
-      count = {rightAnswer: snapshot.child().val(), wrongAnswer: snapshot.child().val()}
+      let count = {rightAnswer: snapshot.child().val(), wrongAnswer: snapshot.child().val()}
       count = snapshot.val();
       dispatch(setCount(count));  
       console.log(count)
