@@ -29,22 +29,32 @@ export class TestSkillsPage extends React.Component {
   };
   
   onSubmit = () => {
-    if (this.props.filters.sortBy === "word" && this.input.current.value.trim() == this.state.pickedTranslation.trim() 
-    || this.props.filters.sortBy === "translation" && this.input.current.value.trim() == this.state.pickedWord.trim()) {
-      this.setState((prevState) => ({ 
+    if (
+      this.props.filters.sortBy === "word" && 
+      this.input.current.value.trim() == this.state.pickedTranslation.trim() || 
+      this.props.filters.sortBy === "translation" && 
+      this.input.current.value.trim() == this.state.pickedWord.trim()
+    ) {
+      const rightAnswer = this.props.count.rightAnswer + 1;
+      this.props.startIncrementCount({ rightAnswer });
+      this.setState(() => ({ 
         error: '',
         iconName: "fas fa-check-circle fa-2x",
       }));
-      const rightAnswer = this.props.count.rightAnswer + 1;
-      this.props.startIncrementCount({ rightAnswer });
-    } else if (this.props.filters.sortBy === 'word' && this.input.current.value != '' && this.input.current.value != this.state.pickedTranslation 
-    || this.props.filters.sortBy === 'translation' && this.input.current.value != '' && this.input.current.value != this.state.Word ) {
-      this.setState((prevState) => ({
+    } else if (
+      this.props.filters.sortBy === 'word' && 
+      this.input.current.value != '' && 
+      this.input.current.value != this.state.pickedTranslation || 
+      this.props.filters.sortBy === 'translation' && 
+      this.input.current.value != '' && 
+      this.input.current.value != this.state.Word 
+    ) {
+      const wrongAnswer = this.props.count.wrongAnswer;
+      this.props.startIncrementCount({ wrongAnswer });
+      this.setState(() => ({
         error: '',
         iconName: "fas fa-times-circle fa-2x",
       }));
-      const wrongAnswer = this.props.count.wrongAnswer;
-      this.props.startIncrementCount({ wrongAnswer });
     } else {
       this.setState(() => ({ error: 'Please provide a translation' }));  
     } 

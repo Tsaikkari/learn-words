@@ -6,21 +6,64 @@ export const incrementCount = ({ incrementBy = 1 } = {}) => ({
   incrementBy
 });
 
-export const startIncrementCount = ({ rightAnswer = 0, wrongAnswer = 0 } = {}) => {
+/*export const startIncrementCount = ({ rightAnswer = 0, wrongAnswer = 0 } = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     if (rightAnswer) {
-      return database.ref(`users/${uid}/count/rightAnswer`).set(rightAnswer).then(() => {
+      return database.ref(`users/${uid}/count/rightAnswer`).set(rightAnswer).then((snapshot) => {
+        console.log(snapshot)
+        
+        //let rightAnswer = snapshot.key;
+        snapshot.forEach((rightAnswer) = {
+          rightAnswer: {
+            ...snapshot('rightAnswer').val()
+          }
+        });
         dispatch(incrementCount(rightAnswer));
+      }).catch((e) => {
+        console.log("Error when setting data", e)
       });
     } else if (wrongAnswer) {
-      return database.ref(`users/${uid}/count/wrongAnswer`).set(wrongAnswer).then(() => {
+      return database.ref(`users/${uid}/count/wrongAnswer`).set(wrongAnswer).then((snapshot) => {
+        let wrongAnswer = snapshot.key;
+        snapshot.forEach((wrongAnswer) = {
+          wrongAnswer: {
+            ...snapshot('wrongAnswer').val()
+          }
+        });
         dispatch(incrementCount(wrongAnswer));
       }).catch((e) => {
-        console.log("Error when fetching data", e)
+        console.log("Error when setting data", e)
       });
     }
   };
+};*/
+
+// TODO: fix
+export const startIncrementCount = () => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+      return database.ref(`users/${uid}/count`).set({
+        rightAnswer: 0,
+        wrongAnswer: 0
+      }).then((snapshot) => {
+        console.log(snapshot)
+        const val = snapshot.val();
+        val.rightAnswer = {
+          ...snapshot('rightAnswer').val()
+        };
+        val.wrongAnswer = {
+          ...snapshot('wrongAnswer').val()
+        };
+        const count = {
+          rightAnswer: val.rightAnswer,
+          wrongAnswer: val.wrongAnswer
+        }
+        dispatch(incrementCount(count));
+      }).catch((e) => {
+        console.log("Error when setting data", e)
+      });
+  }
 };
 
 // SET
