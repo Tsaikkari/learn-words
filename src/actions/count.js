@@ -46,20 +46,9 @@ export const startIncrementCount = () => {
       return database.ref(`users/${uid}/count`).set({
         rightAnswer: 0,
         wrongAnswer: 0
-      }).then((snapshot) => {
-        console.log(snapshot)
-        const val = snapshot.val();
-        val.rightAnswer = {
-          ...snapshot('rightAnswer').val()
-        };
-        val.wrongAnswer = {
-          ...snapshot('wrongAnswer').val()
-        };
-        const count = {
-          rightAnswer: val.rightAnswer,
-          wrongAnswer: val.wrongAnswer
-        }
-        dispatch(incrementCount(count));
+      }).then(() => {
+        
+        
       }).catch((e) => {
         console.log("Error when setting data", e)
       });
@@ -77,9 +66,17 @@ export const startSetCount = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     return database.ref(`users/${uid}/count`).once('value').then((snapshot) => {
-      const count = {
+      /*const count = {
         rightAnswer: snapshot.child('rightAnswer').val(),
         wrongAnswer: snapshot.child('wrongAnswer').val()
+      }*/
+      const val = snapshot.val();
+      console.log(val) // {rightAnswer: 0, wrongAnswer: 0}
+      console.log(val.rightAnswer) // 0
+  
+      const count = {
+        rightAnswer: val.rightAnswer,
+        wrongAnswer: val.wrongAnswer
       }
       dispatch(setCount(count));
       console.log(count)
