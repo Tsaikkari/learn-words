@@ -1,23 +1,18 @@
-const countReducerDefaultState = { rightAnswer: 0, wrongAnswer: 0 } 
-
-export default (state = countReducerDefaultState, action) => {
+export default (state = { rightAnswer: 0, wrongAnswer: 0 }, action) => {
   switch (action.type) {
     case 'INCREMENT':
       return {
-        count: state.count,
         rightAnswer: state.rightAnswer + action.incrementBy,
         wrongAnswer: state.wrongAnswer + action.incrementBy
       };
-    case 'RESET':
-      return {
-        count: {},
-        rightAnswer: 0,
-        wrongAnswer: 0
-      };
     case 'SET':
       return action.count;
+    case 'RESET':
+    return {
+      rightAnswer: 0,
+      wrongAnswer: 0
+    };
     default: 
       return state;
   }
 };
-

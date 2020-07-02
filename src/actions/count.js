@@ -24,23 +24,26 @@ export const startIncrementCount = ({ rightAnswer = 0, wrongAnswer = 0 } = {}) =
 };
 
 // SET
-export const setCount = (count = {rightAnswer: 0, wrongAnswer: 0}) => ({
+export const setCount = (count) => ({
   type: 'SET',
   count
 });
 
+// TODO: Should increment only one score at the time and set 0 as default values
 export const startSetCount = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     return database.ref(`users/${uid}/count`).once('value').then((snapshot) => {
-      let count = {rightAnswer: snapshot.child().val(), wrongAnswer: snapshot.child().val()}
-      count = snapshot.val();
-      dispatch(setCount(count));  
+      const count = {
+        rightAnswer: snapshot.child('rightAnswer').val(),
+        wrongAnswer: snapshot.child('wrongAnswer').val()
+      }
+      dispatch(setCount(count));
       console.log(count)
     }).catch((e) => {
-        console.log('Error fetching data', e);
+      console.log('Error fetching data', e);
     });
-  }
+  };
 }
 
 // RESET
