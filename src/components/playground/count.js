@@ -1,5 +1,41 @@
 import { createStore, combineReducers } from 'redux';
 import { v1 as uuid } from 'uuid';
+import { database } from 'firebase';
+
+const uid = getState().auth.uid;
+const count = [];
+database.ref(`users/${uid}/count`).push({
+  rightAnswer: 0  
+});
+
+database.ref('count/-Kmshhisodhg').update({
+  rightAnswer: 1
+});
+
+database.ref('count').push({
+  rightAnswer: 0
+});
+
+const firebaseCount = {
+  count: {
+    aeürtuifn: {
+      rightAnswer: 0
+    },
+    ürptnfset: {
+      wrongAnswer: 0
+    }
+  }
+};
+
+const count = [
+  {
+  rightAnswer: 0
+}, {
+  wrongAnswer: 0
+}];
+
+database.ref('count').set(count)
+
 
 // Action generators
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startIncrementCount } from '../actions/count';
+import { startAddScore, startIncrementRightScore, startIncrementWrongScore } from '../actions/count';
 import Button from './Button';
 import Score from './Score';
 
@@ -28,7 +28,8 @@ export class TestSkillsPage extends React.Component {
     document.getElementById('answer').focus();         
   };
   
-  onSubmit = () => {
+  onSubmit = (score) => {
+    this.props.startAddScore(score);
     if (
       this.props.filters.sortBy === "word" && 
       this.input.current.value.trim() == this.state.pickedTranslation.trim() || 
@@ -36,7 +37,8 @@ export class TestSkillsPage extends React.Component {
       this.input.current.value.trim() == this.state.pickedWord.trim()
     ) {
       const rightAnswer = this.props.count.rightAnswer + 1;
-      this.props.startIncrementCount({ rightAnswer });
+      this.props.startIncrementRightScore({ rightAnswer });
+      console.log(rightAnswer)
       this.setState(() => ({ 
         error: '',
         iconName: "fas fa-check-circle fa-2x",
@@ -50,7 +52,7 @@ export class TestSkillsPage extends React.Component {
       this.input.current.value != this.state.Word 
     ) {
       const wrongAnswer = this.props.count.wrongAnswer;
-      this.props.startIncrementCount({ wrongAnswer });
+      this.props.startIncrementWrongScore({ wrongAnswer });
       this.setState(() => ({
         error: '',
         iconName: "fas fa-times-circle fa-2x",
@@ -71,20 +73,28 @@ export class TestSkillsPage extends React.Component {
           rightAnswer={this.props.count.rightAnswer}
           wrongAnswer={this.props.count.wrongAnswer}
         />
-      <div className="pick-word-button">
-      {this.state.error && <p className="form__error">{this.state.error}</p>} 
-        <Button 
-          className={random} 
-          buttonText={pick}
-          onClick={this.onHandlePick}
-        />
-        {(this.state.rightAnswer % 10 === 0 && this.state.rightAnswer !== 0) ? 
-        <img className="feedback-image" src="/images/well-done.gif" style={{display: "block"}}/> 
-        : 
-        <img className="feedback-image" src="/images/well-done.gif" style={{display: "none"}}/>} 
-      </div>
-        <h3 className="picked-word">{this.props.filters.sortBy === 'word' ? this.state.pickedWord : this.state.pickedTranslation}</h3>
-      <div className="answer-group">
+        <div className="pick-word-button">
+          {this.state.error && <p className="form__error">{this.state.error}</p>} 
+          <Button 
+            className={random} 
+            buttonText={pick}
+            onClick={this.onHandlePick}
+          />
+          {(this.state.rightAnswer % 10 === 0 && this.state.rightAnswer !== 0) ? 
+          <img className="feedback-image" 
+            src="/images/well-done.gif" 
+            style={{display: "block"}}/> 
+          : 
+          <img className="feedback-image" 
+            src="/images/well-done.gif" 
+            style={{display: "none"}}/>} 
+        </div>
+          <h3 className="picked-word">
+            {this.props.filters.sortBy === 'word' ? 
+            this.state.pickedWord : 
+            this.state.pickedTranslation}
+          </h3>
+        <div className="answer-group">
           <input
             type="text"
             id="answer"
@@ -111,8 +121,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  startIncrementCount: (rightAnswer) => dispatch(startIncrementCount(rightAnswer)),
-  startIncrementCount: (wrongAnswer) => dispatch(startIncrementCount(wrongAnswer))
+  startAddScore: (score) => dispatch(startAddScore(score)),
+  startIncrementRightScore: (rightAnswer) => dispatch(startIncrementRightScore(rightAnswer)),
+  startIncrementWrongScore: (wrongAnswer) => dispatch(startIncrementWrongScore(wrongAnswer))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TestSkillsPage);

@@ -1,29 +1,24 @@
 const countReducerDefault = { rightAnswer: 0, wrongAnswer: 0 };
-let rightAnswer = countReducerDefault.rightAnswer;
-let wrongAnswer = countReducerDefault.wrongAnswer;
+
 export default (state = countReducerDefault, action) => {
   switch (action.type) {
-    case 'INCREMENT':
-      if (rightAnswer) {
-        return {
-          rightAnswer: state.rightAnswer + action.incrementBy
-        } 
-      } else if (wrongAnswer) {
-        return {
-          wrongAnswer: state.wrongAnswer + action.incrementBy
-        }
+    case 'ADD_SCORE':
+      return {
+        ...state,
+        ...action.score
       }
-      /*return {
-        rightAnswer: state.rightAnswer + action.incrementBy,
-        wrongAnswer: state.wrongAnswer + action.incrementBy
-      };*/
+    case 'INCREMENT_SCORE':
+      return {
+        ...state.rightAnswer + action.incrementBy,
+        ...state.wrongAnswer + action.incrementBy
+      };
     case 'SET':
       return action.count;
-    case 'RESET':
+    /*case 'RESET':
     return {
       rightAnswer: 0,
       wrongAnswer: 0
-    };
+    };*/
     default: 
       return state;
   }
