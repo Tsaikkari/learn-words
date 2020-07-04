@@ -40,7 +40,7 @@ export const startIncrementRightScore = () => {
       let score = snapshot.val();
       let rightAnswer = score.rightAnswer
      dispatch(incrementScore(rightAnswer));
-     console.log(rightAnswer)
+     console.log(rightAnswer);
     });
   }
 };
@@ -52,6 +52,7 @@ export const startIncrementWrongScore = () => {
       let score = snapshot.val();
       let wrongAnswer = score.wrongAnswer;
       dispatch(incrementScore(wrongAnswer));
+      console.log(wrongAnswer);
     });
   }
 };

@@ -32,13 +32,14 @@ export class TestSkillsPage extends React.Component {
     this.props.startAddScore(score);
     if (
       this.props.filters.sortBy === "word" && 
-      this.input.current.value.trim() == this.state.pickedTranslation.trim() || 
+      this.input.current.value.trim() == this.state.pickedTranslation.trim() 
+      || 
       this.props.filters.sortBy === "translation" && 
       this.input.current.value.trim() == this.state.pickedWord.trim()
     ) {
       const rightAnswer = this.props.count.rightAnswer + 1;
       this.props.startIncrementRightScore({ rightAnswer });
-      console.log(rightAnswer)
+      console.log(rightAnswer);
       this.setState(() => ({ 
         error: '',
         iconName: "fas fa-check-circle fa-2x",
@@ -46,13 +47,15 @@ export class TestSkillsPage extends React.Component {
     } else if (
       this.props.filters.sortBy === 'word' && 
       this.input.current.value != '' && 
-      this.input.current.value != this.state.pickedTranslation || 
+      this.input.current.value != this.state.pickedTranslation 
+      || 
       this.props.filters.sortBy === 'translation' && 
       this.input.current.value != '' && 
       this.input.current.value != this.state.Word 
     ) {
-      const wrongAnswer = this.props.count.wrongAnswer;
+      const wrongAnswer = this.props.count.wrongAnswer + 1;
       this.props.startIncrementWrongScore({ wrongAnswer });
+      console.log(wrongAnswer);
       this.setState(() => ({
         error: '',
         iconName: "fas fa-times-circle fa-2x",
