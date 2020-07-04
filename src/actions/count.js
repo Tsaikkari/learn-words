@@ -57,7 +57,8 @@ export const startIncrementWrongScore = () => {
       const { rightAnswer, wrongAnswer } = count;
       dispatch(incrementScore({
         ...rightAnswer,
-        wrongAnswer}));
+        wrongAnswer
+      }));
       console.log(wrongAnswer);
     });
   }
