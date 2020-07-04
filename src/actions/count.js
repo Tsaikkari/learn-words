@@ -1,9 +1,9 @@
 import database from '../firebase/firebase';
 
 // ADD_SCORE
-export const addScore = (score) => ({
+export const addScore = (count) => ({
   type: 'ADD_SCORE',
-  score
+  count
 });
 
 export const startAddScore = (scoreData = {}) => {
@@ -13,13 +13,13 @@ export const startAddScore = (scoreData = {}) => {
       rightAnswer = 0,
       wrongAnswer = 0
     } = scoreData;
-    const score = {
+    const count = {
       rightAnswer,
       wrongAnswer
     }
-    database.ref(`users/${uid}/count`).set(score).then(() => {
+    database.ref(`users/${uid}/count`).set(count).then(() => {
       dispatch(addScore({
-        ...score
+        ...count
       }));
     }).catch((e) => {
       console.log('Error fetching data', e);
@@ -33,13 +33,17 @@ export const incrementScore = ( { incrementBy = 1 } = {}) => ({
   incrementBy
 });
 
+// TODO: Fix these
 export const startIncrementRightScore = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     return database.ref(`users/${uid}/count`).on('value', (snapshot) => {
-      let score = snapshot.val();
-      let rightAnswer = score.rightAnswer
-     dispatch(incrementScore(rightAnswer));
+      let count = snapshot.val();
+      const { rightAnswer, wrongAnswer } = count;
+     dispatch(incrementScore({
+       rightAnswer,
+       ...wrongAnswer
+      }));
      console.log(rightAnswer);
     });
   }
@@ -49,14 +53,16 @@ export const startIncrementWrongScore = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     return database.ref(`users/${uid}/count`).on('value', (snapshot) => {
-      let score = snapshot.val();
-      let wrongAnswer = score.wrongAnswer;
-      dispatch(incrementScore(wrongAnswer));
+      let count = snapshot.val();
+      const { rightAnswer, wrongAnswer } = count;
+      dispatch(incrementScore({
+        ...rightAnswer,
+        wrongAnswer}));
       console.log(wrongAnswer);
     });
   }
 };
-// TODO: Fix this
+
 // SET
 export const setCount = (count) => ({
   type: 'SET',
@@ -67,11 +73,7 @@ export const startSetCount = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     return database.ref(`users/${uid}/count`).once('value').then((snapshot) => {
-      const val = snapshot.val();
-      const count = {
-        rightAnswer: val.rightAnswer,
-        wrongAnswer: val.wrongAnswer
-      }
+      const count = snapshot.val();
       dispatch(setCount(count));
       console.log(count)
     }).catch((e) => {

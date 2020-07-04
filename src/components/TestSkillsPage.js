@@ -29,7 +29,7 @@ export class TestSkillsPage extends React.Component {
   };
   
   onSubmit = (score) => {
-    this.props.startAddScore(score);
+      this.props.startAddScore(score);
     if (
       this.props.filters.sortBy === "word" && 
       this.input.current.value.trim() == this.state.pickedTranslation.trim() 
@@ -83,7 +83,7 @@ export class TestSkillsPage extends React.Component {
             buttonText={pick}
             onClick={this.onHandlePick}
           />
-          {(this.state.rightAnswer % 10 === 0 && this.state.rightAnswer !== 0) ? 
+          {(this.props.count.rightAnswer % 10 === 0 && this.props.count.rightAnswer !== 0) ? 
           <img className="feedback-image" 
             src="/images/well-done.gif" 
             style={{display: "block"}}/> 

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { startSetWords } from './actions/words';
-import { startAddScore/*, startIncrementRightScore, startIncrementWrongScore*/ } from './actions/count';
+import { startAddScore, startIncrementRightScore, startIncrementWrongScore } from './actions/count';
 import { startSetCount } from './actions/count';
 import { login, logout } from './actions/auth';
 import 'normalize.css/normalize.css';
@@ -35,8 +35,8 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
     store.dispatch(startAddScore());
-    //store.dispatch(startIncrementRightScore());
-    //store.dispatch(startIncrementWrongScore());
+    store.dispatch(startIncrementRightScore());
+    store.dispatch(startIncrementWrongScore());
     store.dispatch(startSetCount());
     store.dispatch(startSetWords()).then(() => {
       renderApp();

@@ -5,7 +5,7 @@ export default (state = countReducerDefault, action) => {
     case 'ADD_SCORE':
       return {
         ...state,
-        ...action.score
+        ...action.count
       }
     case 'INCREMENT_SCORE':
       return {
@@ -13,7 +13,8 @@ export default (state = countReducerDefault, action) => {
         ...state.wrongAnswer + action.incrementBy
       };
     case 'SET':
-      return action.count;
+      return action.count
+  
     /*case 'RESET':
     return {
       rightAnswer: 0,
