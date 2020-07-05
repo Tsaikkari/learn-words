@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startAddScore, startIncrementRightScore } from '../actions/count';
+import { startIncrementRightScore, startResetCount } from '../actions/count';
+import { startIncrementTotalScore, startResetTotalCount } from '../actions/totalCount';
 import Button from './Button';
 import Score from './Score';
 
@@ -11,8 +12,8 @@ export class TestSkillsPage extends React.Component {
     iconName: '',
     error: ''
   };
-  buttonClassName = ["button button--random-word", "button button--submit"];
-  buttonText = ['Pick Word', 'Submit'];
+  buttonClassName = ["button button--random-word", "button button--submit", "button button--reset"];
+  buttonText = ['Pick Word', 'Submit', 'Reset'];
   input = React.createRef();
 
   onHandlePick = () => {    
@@ -23,12 +24,18 @@ export class TestSkillsPage extends React.Component {
       const randomWordItem = this.props.words[randomNumber];
       const pickedWord = randomWordItem.word;
       const pickedTranslation = randomWordItem.translation;  
-      this.setState(() => ({ pickedWord, pickedTranslation, error: '' }));
+      this.setState(() => ({ 
+        pickedWord, 
+        pickedTranslation, 
+        error: '' 
+      }));
     }   
     document.getElementById('answer').focus();         
   };
   
   onSubmit = () => {
+    const totalScore = this.props.totalCount.totalScore + 1;
+    this.props.startIncrementTotalScore({ totalScore });
     if (
       this.props.filters.sortBy === "word" && 
       this.input.current.value.trim() == this.state.pickedTranslation.trim() 
@@ -40,7 +47,7 @@ export class TestSkillsPage extends React.Component {
       this.props.startIncrementRightScore({ rightAnswer });
       this.setState(() => ({ 
         error: '',
-        iconName: "fas fa-check-circle fa-2x",
+        iconName: "fas fa-check-circle fa-2x"
       }));
     } else if (
       this.props.filters.sortBy === 'word' && 
@@ -61,14 +68,22 @@ export class TestSkillsPage extends React.Component {
     this.input.current.value = '';
   };
 
+  /*onReset = () => {
+    const count = this.props.count;
+    this.props.startResetCount({ count });
+    const totalCount = this.props.totalCount;
+    this.props.startResetTotalCount({ totalCount });
+  }*/
+
   render() {
-    let [random, submit] = this.buttonClassName;
-    let [pick, check] = this.buttonText;
+    let [random, submit/*, reset*/] = this.buttonClassName;
+    let [pick, check/*, start*/] = this.buttonText;
     return (
       <div className="content-container">
         <Score 
           onClick={this.onSubmit}
           rightAnswer={this.props.count.rightAnswer}
+          totalScore={this.props.totalCount.totalScore}
         />
         <div className="pick-word-button">
           {this.state.error && <p className="form__error">{this.state.error}</p>} 
@@ -85,6 +100,7 @@ export class TestSkillsPage extends React.Component {
           <img className="feedback-image" 
             src="/images/well-done.gif" 
             style={{display: "none"}}/>} 
+          
         </div>
           <h3 className="picked-word">
             {this.props.filters.sortBy === 'word' ? 
@@ -114,12 +130,15 @@ export class TestSkillsPage extends React.Component {
 const mapStateToProps = (state) => ({
   words: state.words,
   filters: state.filters,
-  count: state.count
+  count: state.count,
+  totalCount: state.totalCount
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  startAddScore: (score) => dispatch(startAddScore(score)),
-  startIncrementRightScore: (rightAnswer) => dispatch(startIncrementRightScore(rightAnswer))
+  startIncrementTotalScore: (totalScore) => dispatch(startIncrementTotalScore(totalScore)),
+  startIncrementRightScore: (rightAnswer) => dispatch(startIncrementRightScore(rightAnswer)),
+  //startResetCount: (count) => dispatch(startResetCount(count)),
+  //startResetTotalCount: (totalCount) => dispatch(startResetTotalCount(totalCount))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TestSkillsPage);

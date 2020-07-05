@@ -52,7 +52,7 @@ export const resetCount = () => ({
 
 // SET
 export const setCount = (count) => ({
-  type: 'RESET',
+  type: 'SET',
   count
 });
 

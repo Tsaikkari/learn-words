@@ -4,6 +4,7 @@ import wordsReducer from '../reducers/words';
 import filtersReducer from '../reducers/filters';
 import authReducer from '../reducers/auth';
 import countReducer from '../reducers/count';
+import totalCountReducer from '../reducers/totalCount';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENTION_COMPOSE__ || compose;
 
@@ -13,7 +14,8 @@ export default () => {
       words: wordsReducer,
       filters: filtersReducer,
       auth: authReducer,
-      count: countReducer
+      count: countReducer,
+      totalCount: totalCountReducer
     }), 
    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
    composeEnhancers(applyMiddleware(thunk))

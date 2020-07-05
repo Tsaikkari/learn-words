@@ -45,20 +45,23 @@
 }
 
 .score {
-  display: flex;
-  justify-content: space-between;
-  padding-right: 3.5rem;
+  padding-right: 2.5rem;
 }
 
-.score-result {
-  margin-right: $s-size;
-}
-
-.right-answer, .wrong-answer {
-  background: white;
-  border: 1px solid #cacccd;
-  border-radius: 2px;
+.right-answer {
+  color: #a17d98;
+  font-size: 4rem;
+  margin-top: 1rem;
+  padding: 0 5px 10px 0;
   text-align: center;
+}
+
+.score-icon {
+  padding-left: 1.5rem;
+}
+
+.fa-check-circle {
+  margin-right: 0.5rem;
 }
 
 

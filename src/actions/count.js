@@ -6,11 +6,10 @@ export const incrementScore = ( { incrementBy = 1 } = {}) => ({
   incrementBy
 });
 
-// TODO: Fix these
-export const startIncrementRightScore = ({rightAnswer = 0}) => {
+export const startIncrementRightScore = ({ rightAnswer = 0 }) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/count`).set({rightAnswer}).then(() => {
+    return database.ref(`users/${uid}/count`).set({ rightAnswer }).then(() => {
       dispatch(incrementScore({
         ...rightAnswer
      }));
@@ -19,8 +18,25 @@ export const startIncrementRightScore = ({rightAnswer = 0}) => {
   }
 };
 
+// RESET
+/*export const resetCount = () => ({
+  type: 'RESET_COUNT',
+});
+
+export const startResetCount = (count = 0) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/count`).set({ count }).then(() => {
+      dispatch(resetCount({
+        ...count
+     }));
+     console.log(count)
+    });
+  }
+};*/
+
 // SET
-export const setCount = (count = {rightAnswer: 0}, {rightAnswer = 0} = count) => ({
+export const setCount = (count = { rightAnswer: 0 }, { rightAnswer = 0 } = count) => ({
   type: 'SET',
   count,
   rightAnswer
@@ -41,7 +57,5 @@ export const startSetCount = () => {
   };
 }
 
-// RESET
-/*export const resetCount = () => ({
-  type: 'RESET'
-});*/
+
+
