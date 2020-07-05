@@ -6,15 +6,16 @@ export default (state = countReducerDefault, action) => {
       return {
         rightAnswer: state.rightAnswer + action.incrementBy
       };
-    case 'RESET':
-      return {
-        count: 0
-      };
     case 'SET':
       return {
         count: action.count,
         rightAnswer: action.rightAnswer
-      }
+      };
+      case 'RESET':
+      return {
+        count: 0,
+        rightAnswer
+      };
     default: 
       return state;
   }

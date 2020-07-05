@@ -19,21 +19,24 @@ export const startIncrementTotalScore = ({ totalScore = 0 }) => {
 };
 
 // RESET_TOTAL_COUNT
-/*export const resetTotalCount = () => ({
-  type: 'RESET_TOTAL_COUNT'
+export const resetTotalCount = (totalCount = { totalScore: 0 }, { totalScore = 0 } = totalCount) => ({
+  type: 'RESET_TOTAL_COUNT',
+  totalCount,
+  totalScore
 });
 
-export const startResetTotalCount = (totalCount = 0) => {
+export const startResetTotalCount = (totalCount = { totalScore: 0 }, { totalScore = 0 } = totalCount) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/totalCount`).set({ totalCount }).then(() => {
+    return database.ref(`users/${uid}/totalCount`).set({totalcount: totalScore}).then(() => {
       dispatch(resetTotalCount({
-        ...totalCount
+        totalCount,
+        totalScore
      }));
      console.log(totalCount)
     });
   }
-};*/
+};
 
 // SET_TOTAL_COUNT
 export const setTotalCount = (totalCount = { totalScore: 0 }, { totalScore = 0 } = totalCount) => ({

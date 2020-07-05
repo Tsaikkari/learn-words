@@ -60,3 +60,13 @@ button, select {
 	}
 }
 
+.pick-word-reset-button-area {
+	display: flex;
+	justify-content: space-between;
+}
+
+.button--reset {
+	background: $red;
+	margin-right: 3.5rem;
+}
+

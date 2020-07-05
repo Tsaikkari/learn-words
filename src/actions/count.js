@@ -19,21 +19,24 @@ export const startIncrementRightScore = ({ rightAnswer = 0 }) => {
 };
 
 // RESET
-/*export const resetCount = () => ({
+export const resetCount = (count = { rightAnswer: 0 }, { rightAnswer = 0 } = count) => ({
   type: 'RESET_COUNT',
+  count, 
+  rightAnswer
 });
 
-export const startResetCount = (count = 0) => {
+export const startResetCount = (count = { rightAnswer: 0 }, { rightAnswer = 0 } = count) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     return database.ref(`users/${uid}/count`).set({ count }).then(() => {
       dispatch(resetCount({
-        ...count
+        count,
+        rightAnswer
      }));
      console.log(count)
     });
   }
-};*/
+};
 
 // SET
 export const setCount = (count = { rightAnswer: 0 }, { rightAnswer = 0 } = count) => ({

@@ -6,15 +6,16 @@ export default (state = totalCountReducerDefault, action) => {
       return {
         totalScore: state.totalScore + action.incrementBy
       };
-    case 'RESET_TOTAL_SCORE':
-      return {
-        totalCount: 0
-      };
     case 'SET_TOTAL_COUNT':
       return {
         totalCount: action.totalCount,
         totalScore: action.totalScore
-      }
+      };
+      case 'RESET_TOTAL_SCORE':
+      return {
+        totalCount: 0,
+        totalScore: 0
+      };
     default: 
       return state;
   }

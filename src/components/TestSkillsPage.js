@@ -67,17 +67,17 @@ export class TestSkillsPage extends React.Component {
     } 
     this.input.current.value = '';
   };
-
-  /*onReset = () => {
+  // TODO: needs to reset without a full page refresh
+  onReset = () => {
     const count = this.props.count;
     this.props.startResetCount({ count });
     const totalCount = this.props.totalCount;
     this.props.startResetTotalCount({ totalCount });
-  }*/
+  }
 
   render() {
-    let [random, submit/*, reset*/] = this.buttonClassName;
-    let [pick, check/*, start*/] = this.buttonText;
+    let [random, submit, reset] = this.buttonClassName;
+    let [pick, check, start] = this.buttonText;
     return (
       <div className="content-container">
         <Score 
@@ -85,7 +85,7 @@ export class TestSkillsPage extends React.Component {
           rightAnswer={this.props.count.rightAnswer}
           totalScore={this.props.totalCount.totalScore}
         />
-        <div className="pick-word-button">
+        <div className="pick-word-reset-button-area">
           {this.state.error && <p className="form__error">{this.state.error}</p>} 
           <Button 
             className={random} 
@@ -99,8 +99,13 @@ export class TestSkillsPage extends React.Component {
           : 
           <img className="feedback-image" 
             src="/images/well-done.gif" 
-            style={{display: "none"}}/>} 
-          
+            style={{display: "none"}}
+          />} 
+          <Button 
+            className={reset} 
+            buttonText={start}
+            onClick={this.onReset}
+          />
         </div>
           <h3 className="picked-word">
             {this.props.filters.sortBy === 'word' ? 
@@ -137,8 +142,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   startIncrementTotalScore: (totalScore) => dispatch(startIncrementTotalScore(totalScore)),
   startIncrementRightScore: (rightAnswer) => dispatch(startIncrementRightScore(rightAnswer)),
-  //startResetCount: (count) => dispatch(startResetCount(count)),
-  //startResetTotalCount: (totalCount) => dispatch(startResetTotalCount(totalCount))
+  startResetCount: (count) => dispatch(startResetCount(count)),
+  startResetTotalCount: (totalCount) => dispatch(startResetTotalCount(totalCount))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TestSkillsPage);
