@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startAddScore, startIncrementRightScore, startIncrementWrongScore } from '../actions/count';
+import { startAddScore, startIncrementRightScore } from '../actions/count';
 import Button from './Button';
 import Score from './Score';
 
@@ -9,7 +9,7 @@ export class TestSkillsPage extends React.Component {
     pickedWord: undefined,
     pickedTranslation: undefined,
     iconName: '',
-    error: '',
+    error: ''
   };
   buttonClassName = ["button button--random-word", "button button--submit"];
   buttonText = ['Pick Word', 'Submit'];
@@ -28,8 +28,7 @@ export class TestSkillsPage extends React.Component {
     document.getElementById('answer').focus();         
   };
   
-  onSubmit = (score) => {
-      this.props.startAddScore(score);
+  onSubmit = () => {
     if (
       this.props.filters.sortBy === "word" && 
       this.input.current.value.trim() == this.state.pickedTranslation.trim() 
@@ -39,7 +38,6 @@ export class TestSkillsPage extends React.Component {
     ) {
       const rightAnswer = this.props.count.rightAnswer + 1;
       this.props.startIncrementRightScore({ rightAnswer });
-      console.log(rightAnswer);
       this.setState(() => ({ 
         error: '',
         iconName: "fas fa-check-circle fa-2x",
@@ -53,9 +51,6 @@ export class TestSkillsPage extends React.Component {
       this.input.current.value != '' && 
       this.input.current.value != this.state.Word 
     ) {
-      const wrongAnswer = this.props.count.wrongAnswer + 1;
-      this.props.startIncrementWrongScore({ wrongAnswer });
-      console.log(wrongAnswer);
       this.setState(() => ({
         error: '',
         iconName: "fas fa-times-circle fa-2x",
@@ -74,7 +69,6 @@ export class TestSkillsPage extends React.Component {
         <Score 
           onClick={this.onSubmit}
           rightAnswer={this.props.count.rightAnswer}
-          wrongAnswer={this.props.count.wrongAnswer}
         />
         <div className="pick-word-button">
           {this.state.error && <p className="form__error">{this.state.error}</p>} 
@@ -125,8 +119,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   startAddScore: (score) => dispatch(startAddScore(score)),
-  startIncrementRightScore: (rightAnswer) => dispatch(startIncrementRightScore(rightAnswer)),
-  startIncrementWrongScore: (wrongAnswer) => dispatch(startIncrementWrongScore(wrongAnswer))
+  startIncrementRightScore: (rightAnswer) => dispatch(startIncrementRightScore(rightAnswer))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TestSkillsPage);
