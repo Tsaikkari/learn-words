@@ -9,7 +9,7 @@ const Score = (props) => {
         <i className="fas fa-check-circle fa-3x"></i>
         </div>
         <div className="score-items">
-          <p className="right-answer" id="right-score">{props.onClick && props.rightAnswer} /  {props.onClick && props.totalScore}</p>
+          <p className="right-answer" id="right-score">{props.onClick && props.rightAnswer} / {props.onClick && props.totalScore}</p>
         </div>
       </div>
     </div>

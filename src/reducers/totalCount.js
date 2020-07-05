@@ -13,8 +13,8 @@ export default (state = totalCountReducerDefault, action) => {
       };
       case 'RESET_TOTAL_SCORE':
       return {
-        totalCount: 0,
-        totalScore: 0
+        totalCount: state.totalCount = 0,
+        totalScore: state.totalScore = 0
       };
     default: 
       return state;

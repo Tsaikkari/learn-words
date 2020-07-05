@@ -19,10 +19,8 @@ export const startIncrementRightScore = ({ rightAnswer = 0 }) => {
 };
 
 // RESET
-export const resetCount = (count = { rightAnswer: 0 }, { rightAnswer = 0 } = count) => ({
+export const resetCount = () => ({
   type: 'RESET_COUNT',
-  count, 
-  rightAnswer
 });
 
 export const startResetCount = (count = { rightAnswer: 0 }, { rightAnswer = 0 } = count) => {

@@ -13,8 +13,9 @@ export default (state = countReducerDefault, action) => {
       };
       case 'RESET':
       return {
-        count: 0,
-        rightAnswer
+        totalCount: {
+        rightAnswer: null
+        }
       };
     default: 
       return state;

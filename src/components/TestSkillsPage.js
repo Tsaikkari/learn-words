@@ -12,13 +12,18 @@ export class TestSkillsPage extends React.Component {
     iconName: '',
     error: ''
   };
-  buttonClassName = ["button button--random-word", "button button--submit", "button button--reset"];
-  buttonText = ['Pick Word', 'Submit', 'Reset'];
+  buttonClassName = [
+    "button button--random-word",
+    "button button--submit", 
+    "button button--reset"];
+  buttonText = ['Pick Word', 'Submit', 'Reset Score'];
   input = React.createRef();
 
   onHandlePick = () => {    
     if (this.props.words.length < 1) {
-      this.setState(() => ({ error: 'Please provide word(s) and translation before testing.' }));
+      this.setState(() => ({ 
+        error: 'Please provide word(s) and translation before testing.' 
+      }));
     } else {
       const randomNumber = Math.floor(Math.random() * this.props.words.length);
       const randomWordItem = this.props.words[randomNumber];
@@ -32,6 +37,16 @@ export class TestSkillsPage extends React.Component {
     }   
     document.getElementById('answer').focus();         
   };
+
+  changeHandler = () => {
+    const submitButton = document.getElementById('submit');
+    const resetButton = document.getElementById('reset');
+    if (submitButton.addEventListener) {
+      submitButton.addEventListener = this.onSubmit()
+    } else if (resetButton.addEventListener) {
+      resetButton.addEventListener = this.onReset()
+    }
+  }
   
   onSubmit = () => {
     const totalScore = this.props.totalCount.totalScore + 1;
@@ -69,9 +84,9 @@ export class TestSkillsPage extends React.Component {
   };
   // TODO: needs to reset without a full page refresh
   onReset = () => {
-    const count = this.props.count;
+    const count = this.props.count.rightAnswer = 0;
     this.props.startResetCount({ count });
-    const totalCount = this.props.totalCount;
+    const totalCount = this.props.totalCount.totalScore = 0;
     this.props.startResetTotalCount({ totalCount });
   }
 
@@ -81,7 +96,7 @@ export class TestSkillsPage extends React.Component {
     return (
       <div className="content-container">
         <Score 
-          onClick={this.onSubmit}
+          onClick={this.changeHandler}
           rightAnswer={this.props.count.rightAnswer}
           totalScore={this.props.totalCount.totalScore}
         />
@@ -92,16 +107,21 @@ export class TestSkillsPage extends React.Component {
             buttonText={pick}
             onClick={this.onHandlePick}
           />
-          {(this.props.count.rightAnswer % 10 === 0 && this.props.count.rightAnswer !== 0) ? 
-          <img className="feedback-image" 
+          {
+            (this.props.count.rightAnswer % 10 === 0 && this.props.count.rightAnswer !== 0) ? 
+          <img 
+            className="feedback-image" 
             src="/images/well-done.gif" 
             style={{display: "block"}}/> 
           : 
-          <img className="feedback-image" 
+          <img 
+            className="feedback-image" 
             src="/images/well-done.gif" 
             style={{display: "none"}}
-          />} 
+          />
+          } 
           <Button 
+            id="reset"
             className={reset} 
             buttonText={start}
             onClick={this.onReset}
@@ -121,6 +141,7 @@ export class TestSkillsPage extends React.Component {
             ref={this.input}      
           />
           <Button 
+            id="submit"
             className={submit} 
             buttonText={check}
             onClick={this.onSubmit}

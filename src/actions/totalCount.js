@@ -28,7 +28,7 @@ export const resetTotalCount = (totalCount = { totalScore: 0 }, { totalScore = 0
 export const startResetTotalCount = (totalCount = { totalScore: 0 }, { totalScore = 0 } = totalCount) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/totalCount`).set({totalcount: totalScore}).then(() => {
+    return database.ref(`users/${uid}/totalCount`).set({ totalcount: totalScore }).then(() => {
       dispatch(resetTotalCount({
         totalCount,
         totalScore
