@@ -82,12 +82,13 @@ export class TestSkillsPage extends React.Component {
     } 
     this.input.current.value = '';
   };
-  // TODO: needs to reset without a full page refresh
+  
   onReset = () => {
     const count = this.props.count.rightAnswer = 0;
     this.props.startResetCount({ count });
     const totalCount = this.props.totalCount.totalScore = 0;
     this.props.startResetTotalCount({ totalCount });
+    this.onHandlePick();
   }
 
   render() {
