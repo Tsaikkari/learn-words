@@ -13,7 +13,6 @@ export const startIncrementRightScore = ({ rightAnswer = 0 }) => {
       dispatch(incrementScore({
         ...rightAnswer
      }));
-     console.log(rightAnswer);
     });
   }
 };
@@ -31,7 +30,6 @@ export const startResetCount = (count = { rightAnswer: 0 }, { rightAnswer = 0 } 
         count,
         rightAnswer
      }));
-     console.log(count)
     });
   }
 };
@@ -53,7 +51,7 @@ export const startSetCount = () => {
         rightAnswer
       }));
     }).catch((e) => {
-      console.log('Error fetching data', e);
+      console.log('Error when fetching data', e);
     });
   };
 }

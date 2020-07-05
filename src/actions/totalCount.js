@@ -13,7 +13,6 @@ export const startIncrementTotalScore = ({ totalScore = 0 }) => {
       dispatch(incrementTotalScore({
         ...totalScore
      }));
-     console.log(totalScore)
     });
   }
 };
@@ -33,7 +32,6 @@ export const startResetTotalCount = (totalCount = { totalScore: 0 }, { totalScor
         totalCount,
         totalScore
      }));
-     console.log(totalCount)
     });
   }
 };
