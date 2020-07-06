@@ -109,7 +109,7 @@ export class TestSkillsPage extends React.Component {
             onClick={this.onHandlePick}
           />
           {
-            (this.props.count.rightAnswer % 10 === 0 && this.props.count.rightAnswer !== 0) ? 
+            (this.props.count.rightAnswer % 2 === 0 && this.props.count.rightAnswer !== 0) ? 
           <img 
             className="feedback-image" 
             src="/images/well-done.gif" 

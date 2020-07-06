@@ -55,6 +55,9 @@
   margin-bottom: 1rem;
   padding: 0 5px 10px 0;
   text-align: center;
+  @media (max-width: $desktop-breakpoint) {
+		font-size: $l-size;
+	}
 }
 
 .score-icon {
