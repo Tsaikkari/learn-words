@@ -68,9 +68,9 @@ button, select {
 
 .button--reset {
 	background: $red;
-	margin-right: 0.7rem;
+	margin-right: 3.4rem;
 	@media (max-width: $desktop-breakpoint) {
-		margin-right: 0;
+		margin-right: 0.5rem;
 	}
 }
 

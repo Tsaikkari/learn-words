@@ -45,7 +45,10 @@
 }
 
 .score {
-  padding-right: 2rem;
+  padding-right: 2.5rem;
+  @media (max-width: $desktop-breakpoint) {
+		padding-right: 0;
+	}
 }
 
 .right-answer {

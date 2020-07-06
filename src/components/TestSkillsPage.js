@@ -16,7 +16,7 @@ export class TestSkillsPage extends React.Component {
     "button button--random-word",
     "button button--submit", 
     "button button--reset"];
-  buttonText = ['Pick Word', 'Submit', 'Reset Score'];
+  buttonText = ['Pick Word', 'Submit', 'Reset'];
   input = React.createRef();
 
   onHandlePick = () => {    
