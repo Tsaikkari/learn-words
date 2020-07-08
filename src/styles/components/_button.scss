@@ -1,5 +1,5 @@
 .button {
-	background: #a17d98;
+	background: $lila;
 	border: none;
 	border-radius: 3px;
 	color: white;
@@ -17,7 +17,7 @@
 
 .button--link {
 	background: none;
-	color: #a17d98;
+	color: $lila;
 	margin-bottom: 0;
 	margin-left: 3px;
 	padding-left: 0;
